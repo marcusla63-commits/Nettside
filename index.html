@@ -4,318 +4,334 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Marcus Larsen – digital hjelp for bedrifter i Harstad</title>
-<meta name="description" content="Marcus Larsen hjelper små bedrifter i Harstad å gjøre tunge oppgaver enklere: smartere rutiner, bedre bruk av verktøyene de har, og KI der det gir mening. Første prat er gratis.">
+<meta name="description" content="Marcus Larsen hjelper små bedrifter i Harstad med mindre tastearbeid og enklere rutiner: regneark, verktøyene dere har, små kurs og KI der det passer. Første prat er gratis.">
 <meta name="theme-color" content="#070b14">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --night:#070b14;--night-2:#0f1828;--snow:#f2f5f8;--ice:#9fd3ff;
+  --night:#070b14;--night-2:#0f1828;--night-3:#16233a;--row-a:#0b111d;--row-b:#121c2d;
+  --snow:#f2f5f8;--mist:#c9d6e3;--ice:#9fd3ff;--ice-2:#c3e3ff;--steel:#2a3a52;
   --soft-dark:#a9b4c2;--soft-light:#45505c;
   --s-small:14px;
   --s-body:clamp(17px,16.4px + .2vw,19px);
-  --s-lead:clamp(21px,1.2vw + 15px,26px);
-  --s-state:clamp(24px,2.5vw,36px);
-  --s-head:clamp(40px,4.6vw,72px);
-  --s-display:clamp(56px,7vw,112px);
-  --s-mega:clamp(96px,11vw,176px);
-  --margin:32px;
-  --axis:42%;
-  --font:'Bricolage Grotesque','Segoe UI','DejaVu Sans Condensed',Arial,sans-serif;
+  --s-lead:clamp(21px,1.1vw + 15px,26px);
+  --s-state:clamp(24px,2.4vw,36px);
+  --s-head:clamp(40px,4.4vw,68px);
+  --s-mega:clamp(96px,13vw,208px);
+  --gap:8px;
+  --font:'Jost','Segoe UI','DejaVu Sans',Arial,sans-serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--night);color:var(--snow);font-family:var(--font);font-size:var(--s-body);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:clip}
-img{display:block;max-width:100%;height:auto}
+img,video{display:block;max-width:100%}
 a{color:inherit}
-p,h1,h2,h3,dl,dd,figure{margin:0}
-.d{font-weight:600;letter-spacing:-.04em;line-height:.92;font-variation-settings:"opsz" 96}
-.line{display:block;white-space:nowrap}
-.pad{padding-inline:var(--margin)}
+p,h1,h2,h3,dl,dd,ul,figure{margin:0}
+ul{padding:0;list-style:none}
+.d{font-weight:700;letter-spacing:-.04em;line-height:.95}
 .gone{visibility:hidden}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.tile{position:relative;overflow:hidden;padding:22px}
+:focus-visible{outline:3px solid var(--ice);outline-offset:2px}
+.on-light :focus-visible,.on-light:focus-visible{outline-color:var(--night)}
 
-/* One button shape: square, 52px. Colour follows the field. */
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border:0;border-radius:0;text-decoration:none;font:500 var(--s-body) var(--font);cursor:pointer;background:var(--snow);color:var(--night);transition:transform .18s ease,background-color .18s ease}
-.btn:hover{background:var(--ice);transform:translateY(-2px)}
-.btn:active{transform:translateY(0)}
-.light .btn{background:var(--night);color:var(--snow)}
-.light .btn:hover{background:#1d2a40}
-.lnk{font-weight:500;text-decoration:none;text-underline-offset:.22em}
-.lnk:hover{text-decoration:underline}
-:focus-visible{outline:3px solid var(--ice);outline-offset:3px}
-.light :focus-visible{outline-color:var(--night)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:52px;padding:0 24px;border:0;border-radius:0;text-decoration:none;font:500 var(--s-body) var(--font);cursor:pointer;background:var(--night);color:var(--snow);transition:transform .18s ease,background-color .18s ease}
+.btn:hover{background:var(--steel);transform:translateY(-2px)}
+.arrow{width:22px;height:22px;flex:none;transition:transform .2s ease}
+a:hover > .arrow,button:hover > .arrow{transform:translate(4px,-4px)}
 
-/* ---------- Masthead: the aurora mosaic ---------- */
-.hero{min-height:100svh;display:grid;grid-template-rows:52svh 1fr}
-.band{position:relative;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:1fr 1fr;min-height:340px}
-.cell{position:relative;overflow:hidden;background:var(--night-2)}
-.cell img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05)}
-.sky{grid-column:1 / 5;grid-row:1 / 3;background:var(--night)}
-.sky canvas,.sky svg{position:absolute;inset:0;width:100%;height:100%;display:block}
-.p1{grid-column:5;grid-row:1}
-.p2{grid-column:5;grid-row:2;background:#16233a}
-.sun{grid-column:6;grid-row:1 / 3;background:var(--ice);color:var(--night);padding:88px 20px 22px;display:flex;flex-direction:column;justify-content:flex-end;gap:16px}
-.sun .hrs{font-size:var(--s-head)}
-.sun p{font-size:var(--s-small);line-height:1.35}
-.sun .times{font-size:var(--s-small);font-weight:500;font-variant-numeric:tabular-nums;margin-top:10px}
-.sun #dl-what{margin-top:10px}
+/* ================= Hero: a board that fills the first screen ================= */
+.hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:170px 64px minmax(0,1fr);gap:var(--gap);padding:var(--gap);height:100svh;min-height:720px}
+.name{grid-column:1 / -1;grid-row:1;background:var(--snow);color:var(--night);padding:14px 22px;display:flex;align-items:center}
+.name svg{width:100%;height:100%;display:block}
+.name text{font-family:var(--font);font-weight:700;fill:var(--night)}
+.nav{grid-row:2;background:var(--night-2);display:flex;align-items:flex-start;padding:20px 22px;text-decoration:none;font-weight:500;transition:background-color .18s ease}
+.nav:hover{background:var(--night-3)}
+.n1{grid-column:1 / 4}.n2{grid-column:4 / 7}.n3{grid-column:7 / 10}.n4{grid-column:10 / 13}
 
-.bar{position:absolute;top:0;left:0;right:0;display:grid;grid-template-columns:auto 1fr auto;align-items:stretch;z-index:2}
-.mark{background:var(--snow);color:var(--night);font-weight:600;letter-spacing:-.02em;text-decoration:none;padding:0 20px;min-height:52px;display:flex;align-items:center;font-size:var(--s-body)}
-.tab{background:var(--ice);color:var(--night);display:flex;gap:28px;align-items:center;padding:0 24px;width:calc(var(--axis) - 0px);justify-self:start;min-width:max-content}
-.bar .btn{align-self:start}
+.railL{grid-column:1 / 3;grid-row:3;display:grid;grid-template-rows:1fr 1fr;gap:var(--gap);min-height:0}
+.offer{background:var(--ice);color:var(--night);display:flex;flex-direction:column;justify-content:space-between}
+.offer .d{font-size:var(--s-head)}
+.facts{background:var(--night-2);display:flex;flex-direction:column;justify-content:flex-end;gap:6px;color:var(--soft-dark)}
+.facts li:first-child{color:var(--snow);font-weight:500}
 
-.title{display:grid;grid-template-columns:var(--axis) 1fr;align-items:end;padding:0 var(--margin) 64px;gap:0}
-.standfirst{max-width:30ch;padding-right:32px;color:var(--soft-dark)}
-.standfirst strong{color:var(--snow);font-weight:500}
-.title h1{font-size:var(--s-display);padding-top:80px}
-.mask{display:block;overflow:hidden;padding-bottom:.06em}
-.mask span{display:block;animation:rise .95s cubic-bezier(.16,1,.3,1) both}
+.stage{grid-column:3 / 11;grid-row:3;padding:0;background:var(--night-3);min-height:0}
+.stage video,.stage .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.stage .poster{filter:grayscale(1) contrast(1.05) brightness(.8);animation:drift 26s ease-in-out infinite alternate}
+@keyframes drift{from{transform:scale(1.1)}to{transform:scale(1)}}
+.lede{position:absolute;left:0;bottom:0;width:min(640px,72%);background:var(--night);padding:24px 28px 26px}
+.lede h1{font-size:var(--s-state);font-weight:500;letter-spacing:-.02em;line-height:1.12}
+.mask{display:block;overflow:hidden;padding-bottom:.08em}
+.mask span{display:block;animation:rise .9s cubic-bezier(.16,1,.3,1) both}
 .mask:nth-child(2) span{animation-delay:.11s}
-.act{display:flex;gap:28px;align-items:center;flex-wrap:wrap;margin-top:32px;animation:fade .7s .5s ease both}
+.lede p{margin-top:12px;color:var(--soft-dark);max-width:44ch;animation:fade .7s .45s ease both}
 @keyframes rise{from{transform:translateY(108%)}to{transform:none}}
-@keyframes fade{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
-/* ---------- Intro: statement tiles ---------- */
-.board{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:38svh 38svh;gap:8px;padding:8px}
-.tA{grid-column:1 / 9;grid-row:1 / 3;background:var(--night-2);display:flex;align-items:flex-end;padding:20px}
-.tA p{font-size:var(--s-mega)}
-.tB{grid-column:9 / 13;grid-row:1;background:var(--snow);color:var(--night);display:flex;flex-direction:column;justify-content:space-between;padding:20px}
-.tB .big{font-size:var(--s-mega)}
-.tB p:last-child{font-size:var(--s-small)}
-.tC{grid-column:9 / 11;grid-row:2;background:#16233a}
-.tD{grid-column:11 / 13;grid-row:2;background:var(--night-2)}
-.introText{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));padding:96px var(--margin) 160px}
-.introText p{grid-column:7 / 13;font-size:var(--s-lead);line-height:1.38}
+.railR{grid-column:11 / 13;grid-row:3;display:grid;grid-template-rows:repeat(4,minmax(0,1fr)) 1.4fr;gap:var(--gap);min-height:0}
+.railR .tile{font-size:var(--s-small);padding:16px 18px;display:flex;align-items:flex-end}
+.r1{background:var(--snow);color:var(--night)}
+.r2{background:var(--mist);color:var(--night)}
+.r3{background:#8fa3b9;color:var(--night)}
+.r4{background:var(--steel);color:var(--snow)}
+.book{background:var(--ice);color:var(--night);text-decoration:none;font-weight:500;font-size:var(--s-body)!important;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;transition:background-color .18s ease}
+.book:hover{background:var(--ice-2)}
 
-/* ---------- Features: pinned heading on a snow field ---------- */
-.feat{background:var(--snow);color:var(--night);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;padding:140px var(--margin) 160px}
-.feat h2{grid-column:1 / 6;font-size:var(--s-head);position:sticky;top:32px;align-self:start}
-.blocks{grid-column:7 / 13;display:grid;grid-template-columns:1fr 1fr;gap:72px 32px}
-.blk h3{font-size:var(--s-lead);font-weight:600;letter-spacing:-.02em;margin-bottom:16px}
-.blk ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;color:var(--soft-light)}
-.blk li{transition:transform .2s ease}
-.blk:hover li{transform:translateX(6px)}
+/* ================= Marquee of the work ================= */
+.ticker{overflow:hidden;background:var(--ice);color:var(--night);margin:0 var(--gap);padding:18px 0}
+.ticker .run{display:flex;width:max-content;animation:slide 38s linear infinite}
+.ticker span{font-size:var(--s-state);font-weight:500;letter-spacing:-.02em;padding:0 22px;white-space:nowrap;display:flex;align-items:center;gap:44px}
+.ticker span::after{content:"";width:12px;height:12px;background:var(--night);display:block}
+@keyframes slide{to{transform:translateX(-50%)}}
+.ticker:hover .run{animation-play-state:paused}
 
-/* ---------- How: many into one ---------- */
-.how{padding:160px var(--margin)}
-.howHead{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;margin-bottom:64px}
-.howHead h2{grid-column:1 / 5;font-size:var(--s-head)}
-.howHead p{grid-column:6 / 10;color:var(--soft-dark);align-self:end}
-.flow{width:100%;height:auto;display:block}
-.js .flow .sq{opacity:0;transition:opacity .5s ease}
-.js .flow.in .sq{opacity:1}
-.js .flow.in .z2{transition-delay:.35s}
-.js .flow.in .z3{transition-delay:.7s}
-.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:40px}
-.steps h3{font-size:var(--s-lead);font-weight:600;letter-spacing:-.02em;margin-bottom:8px}
-.steps p{color:var(--soft-dark);max-width:34ch}
-.steps .price{color:var(--snow);font-weight:500;margin-top:12px}
+/* ================= Services: statement cell, dark rows ================= */
+.services{display:grid;grid-template-columns:1fr 1fr;margin:var(--gap) var(--gap) 0;gap:var(--gap)}
+.svcL{background:var(--snow);color:var(--night);min-height:90svh;padding:48px 40px 40px;display:flex;flex-direction:column;justify-content:space-between}
+.svcL h2{font-size:var(--s-head)}
+.svcL h2 .l{display:block}
+.svcL h2 .r{display:block;text-align:right}
+.svcFoot{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.svcFoot p{max-width:32ch}
+.svcR{display:grid;grid-auto-rows:1fr}
+.row{display:grid;grid-template-columns:5fr 4fr 3fr;gap:20px;padding:28px;align-items:start}
+.row:nth-child(odd){background:var(--row-a)}.row:nth-child(even){background:var(--row-b)}
+.row h3{font-size:var(--s-lead);font-weight:500;letter-spacing:-.02em;line-height:1.15;transition:color .2s ease}
+.row:hover h3{color:var(--ice)}
+.row p{color:var(--soft-dark)}
+.row ul{font-size:var(--s-small);color:var(--mist);display:flex;flex-direction:column;gap:4px}
 
-/* ---------- Calculator: an ice field with one large figure ---------- */
-.calc{background:var(--ice);color:var(--night);padding:140px var(--margin);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;align-items:start}
-.calcL{grid-column:1 / 6}
-.calcL h2{font-size:var(--s-head)}
-.calcL > p{margin-top:24px;max-width:36ch}
-.ctrl{margin-top:36px}
+/* ================= How: tiles that grow ================= */
+.how{padding:160px var(--gap) 0}
+.grow{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:10px;align-items:end;position:relative}
+.grow h2{grid-column:1 / 8;grid-row:1;align-self:start;font-size:var(--s-head);padding:0 14px}
+.st{grid-row:1;display:flex;align-items:center;justify-content:center;padding:28px}
+.st1{grid-column:1 / 4;height:30vh;background:var(--night-3)}
+.st2{grid-column:4 / 8;height:44vh;background:var(--steel)}
+.st3{grid-column:8 / 13;height:60vh;background:var(--ice)}
+.stageArt{width:100%;height:100%}
+.cap{grid-row:2;padding:20px 14px 0}
+.c1{grid-column:1 / 4}.c2{grid-column:4 / 8}.c3{grid-column:8 / 13}
+.cap h3{font-size:var(--s-lead);font-weight:500;margin-bottom:6px}
+.cap p{color:var(--soft-dark);max-width:36ch}
+.cap .free{color:var(--snow);margin-top:10px}
+.js .st .stageArt rect{opacity:0;transition:opacity .45s ease}
+.js .st.in .stageArt rect{opacity:1}
+
+/* ================= Calculator board ================= */
+.calc{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap);padding:160px var(--gap) 0}
+.cA{grid-column:1 / 6;background:var(--night-2);padding:36px}
+.cA h2{font-size:var(--s-head)}
+.cA > p{margin-top:20px;color:var(--soft-dark);max-width:36ch}
+.ctrl{margin-top:32px}
 .ctrl label{display:flex;justify-content:space-between;font-weight:500;margin-bottom:6px}
-.ctrl input[type=range]{width:100%;height:44px;margin:0;accent-color:var(--night);cursor:pointer;background:transparent}
-.calcR{grid-column:7 / 13}
-.calcR .big{font-size:var(--s-mega)}
-.calcR .unit{font-size:var(--s-lead);line-height:1.25;margin-top:16px;max-width:30ch}
-.calcR .note{margin-top:24px;max-width:44ch}
+.ctrl input[type=range]{width:100%;height:44px;margin:0;accent-color:var(--ice);cursor:pointer;background:transparent}
+.cB{grid-column:6 / 13;background:var(--ice);color:var(--night);padding:36px;display:flex;flex-direction:column;justify-content:flex-end}
+.cB .big{font-size:var(--s-mega);line-height:.82}
+.cB .unit{font-size:var(--s-lead);line-height:1.25;margin-top:16px;max-width:30ch}
+.cA .note{margin-top:28px;max-width:46ch;color:var(--soft-dark)}
 
-/* ---------- About: drop-cap tile ---------- */
-.about{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;padding:140px var(--margin)}
-.facts{grid-column:1 / 3;display:flex;flex-direction:column;gap:18px;font-size:var(--s-small);color:var(--soft-dark)}
-.facts dt{color:var(--snow);font-weight:500}
-.facts dd{margin:0}
-.bio{grid-column:3 / 13;font-size:var(--s-state);line-height:1.2;color:var(--soft-dark);max-width:34ch}
-.bio b{color:var(--snow);font-weight:500}
-.cap{float:left;width:3.6em;height:3.6em;margin:.12em .5em 0 0;background:var(--ice);color:var(--night);display:flex;align-items:flex-end;padding:.12em .16em;font-size:1em}
-.cap span{font-size:2.6em;line-height:.8}
-.bio + .bio{margin-top:1.2em}
-.bio a{color:var(--snow);text-decoration:underline;text-underline-offset:.15em;text-decoration-thickness:.06em}
-.bio a:hover{color:var(--ice)}
-.bioWrap{grid-column:3 / 13}
+/* ================= About: wide photo, colour tile, facts ================= */
+.about{padding:160px var(--gap) 0}
+.aboutHead{padding:0 14px;max-width:none}
+.aboutHead h2{font-size:var(--s-head)}
+.aboutHead p{font-size:var(--s-lead);line-height:1.3;max-width:44ch;margin-top:24px;color:var(--soft-dark)}
+.aboutHead p b{color:var(--snow);font-weight:500}
+.aboutTiles{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px;margin-top:72px;align-items:start}
+.photoWrap{grid-column:1 / 9}
+.photo{aspect-ratio:16 / 10;background:var(--night-3);padding:0}
+.photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05)}
+.photo .paper{position:absolute;top:0;right:0;width:340px;max-width:60%;background:var(--snow);color:var(--night);padding:20px}
+.place{grid-column:9 / 13}
+.placeTile{background:var(--ice);color:var(--night);min-height:280px;display:flex;flex-direction:column;justify-content:space-between;gap:24px}
+.placeTile .d{font-size:var(--s-head)}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px;margin-top:20px;font-size:var(--s-small);color:var(--soft-dark)}
+.kv dt{color:var(--snow);font-weight:500}
 
-/* ---------- FAQ: a table of large questions ---------- */
-.faq{background:var(--snow);color:var(--night);padding:140px var(--margin) 160px}
-.qa{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;align-items:baseline}
-.qa + .qa{margin-top:80px}
-.qa h3,.qa h2{grid-column:1 / 7;font-size:var(--s-state);font-weight:500;letter-spacing:-.02em;line-height:1.1}
-.qa h2{color:var(--soft-light)}
-.qa p{grid-column:8 / 13;max-width:40ch}
+.strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap);margin-top:72px}
+.strip .tile{padding:0;aspect-ratio:4 / 5;background:var(--night-3)}
+.strip img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05);transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.strip .tile:hover img{transform:scale(1.04)}
 
-/* ---------- Contact ---------- */
-.contact{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;padding:160px var(--margin) 120px;align-items:start}
-.cL{grid-column:1 / 6}
-.cL .say{font-size:var(--s-state);line-height:1.15;max-width:22ch}
-.cL .mail{display:inline-block;margin-top:32px;font-size:var(--s-lead);font-weight:500;text-decoration:underline;text-underline-offset:.2em;overflow-wrap:anywhere}
-.cL .mail:hover{color:var(--ice)}
-.cL .where{margin-top:16px;font-size:var(--s-small);color:var(--soft-dark)}
-.form{grid-column:7 / 13;display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.fld{display:flex;flex-direction:column;gap:8px;font-weight:500;font-size:var(--s-small);color:var(--soft-dark)}
-.fld.full{grid-column:1 / 3}
-.fld input,.fld textarea{font:400 var(--s-body) var(--font);color:var(--night);background:var(--snow);border:0;border-radius:0;padding:14px;min-height:52px}
-.fld textarea{min-height:120px;resize:vertical}
-.form .btn{justify-self:start;grid-column:1 / 3}
-.form .fine{grid-column:1 / 3;font-size:var(--s-small);color:var(--soft-dark)}
+/* ================= FAQ: a band per question ================= */
+.faq{margin-top:160px}
+.fq{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;padding:56px 22px}
+.fq:nth-child(even){background:var(--night)}.fq:nth-child(odd){background:var(--night-2)}
+.fq h3{grid-column:1 / 6;font-size:var(--s-lead);font-weight:500;letter-spacing:-.01em;line-height:1.2}
+.fq p{grid-column:7 / 13;max-width:46ch;color:var(--mist)}
+.fqHead{background:var(--ice)!important;color:var(--night);min-height:40svh;align-items:end}
+.fqHead h2{grid-column:1 / -1;font-size:var(--s-head);align-self:end}
 
-/* ---------- Footer: inverted, wordmark below ---------- */
-.foot{background:var(--snow);color:var(--night);min-height:100svh;display:grid;grid-template-rows:auto 1fr auto auto;padding:40px var(--margin) 24px}
-.fCols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;color:var(--soft-light)}
-.fCols p{margin-bottom:6px}.fCols .f1{color:var(--night);font-weight:500}
-.fCols a{text-decoration:none}.fCols a:hover{text-decoration:underline}
-.word{width:100%;height:auto;display:block}
-.word text{font-family:var(--font);font-weight:600;fill:var(--night)}
-.legal{font-size:var(--s-small);margin-top:20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--soft-light)}
+/* ================= Contact: the form as one bar ================= */
+.contact{background:var(--ice);color:var(--night);min-height:80svh;padding:96px 22px 64px;display:flex;flex-direction:column;justify-content:flex-end;gap:40px}
+.contact h2{font-size:var(--s-head)}
+.contact .say{max-width:46ch;margin-top:16px}
+.bar{display:grid;grid-template-columns:1fr 1fr 1.6fr 1fr;gap:var(--gap)}
+.bar input{font:400 var(--s-body) var(--font);color:var(--night);background:var(--ice-2);border:0;border-radius:0;padding:0 20px;height:96px;width:100%;transition:background-color .18s ease}
+.bar input::placeholder{color:var(--soft-light)}
+.bar input:focus{background:var(--snow);outline:none}
+.bar button{height:96px;background:var(--night);color:var(--snow);border:0;border-radius:0;font:500 var(--s-body) var(--font);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;transition:background-color .18s ease}
+.bar button:hover{background:var(--steel)}
+.small{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-size:var(--s-small);color:var(--soft-light)}
+.small a{color:var(--night);font-weight:500}
 
-/* ---------- Entrances ---------- */
+/* ================= Footer: tiles ================= */
+.foot{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:220px 320px;gap:var(--gap);padding:var(--gap)}
+.foot .tile{display:flex;flex-direction:column;justify-content:space-between}
+.f1{grid-column:1 / 5;background:var(--night-2)}
+.f1 p:first-child{font-size:var(--s-lead);line-height:1.25;max-width:24ch}
+.f1 p:last-child,.f3 p:last-child{font-size:var(--s-small);color:var(--soft-dark)}
+.f2{grid-column:5 / 8;background:var(--night-2)}
+.f2 a{text-decoration:none;display:block;padding:2px 0}.f2 a:hover{color:var(--ice)}
+.f3{grid-column:8 / 10;background:var(--night-2)}
+.f4{grid-column:10 / 13;background:var(--night-2)}
+.f4 a{text-decoration:underline;text-underline-offset:.2em;overflow-wrap:anywhere}
+.f5{grid-column:1 / 9;background:var(--snow);color:var(--night);justify-content:center!important}
+.f5 svg{width:100%;height:auto}
+.f5 text{font-family:var(--font);font-weight:700;fill:var(--night)}
+.f6{grid-column:9 / 13;background:var(--ice);color:var(--night);text-decoration:none;transition:background-color .18s ease}
+.f6:hover{background:var(--ice-2)}
+.f6 p{font-size:var(--s-lead);font-weight:500;letter-spacing:-.02em;line-height:1.1;max-width:12ch}
+.f6 .arrow{width:56px;height:56px;align-self:flex-end}
+
+/* ================= Entrances ================= */
 .js .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)}
 .js .reveal.in{opacity:1;transform:none}
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .mask span,.act{animation:none}
+  .mask span,.lede p,.stage .poster,.ticker .run{animation:none}
   .js .reveal{opacity:1;transform:none;transition:none}
-  .js .flow .sq{opacity:1;transition:none}
-  .btn,.blk li{transition:none}
+  .js .st .stageArt rect{opacity:1;transition:none}
+  .btn,.arrow,.row h3,.nav,.book,.f6,.strip img{transition:none}
 }
 
-/* ---------- Phone ---------- */
+/* ================= Phone ================= */
 @media (max-width:900px){
-  :root{--margin:16px;--s-display:11.5vw;--s-head:10.5vw;--s-mega:17vw;--s-lead:21px;--s-state:22px;--s-body:17px}
-  .hero{grid-template-rows:auto 1fr;min-height:auto}
-  .band{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:max(38svh,260px) auto;min-height:0}
-  .sky{grid-column:1 / 3;grid-row:1}
-  .p1{grid-column:3;grid-row:1}
-  .p2{display:none}
-  .sun{grid-column:1 / -1;grid-row:2;padding:20px var(--margin);flex-direction:row;justify-content:flex-start;align-items:flex-end;flex-wrap:wrap;gap:8px 20px}
-  .hero{grid-template-rows:auto auto 1fr}
-  .bar{grid-template-columns:auto 1fr}
-  .tab{display:none}
-  .bar .btn{justify-self:end;min-height:44px;padding:0 16px;font-size:var(--s-small)}
-  .mark{min-height:44px;font-size:var(--s-small)}
-  .title{grid-template-columns:1fr;padding:0 var(--margin) 40px}
-  .title h1{padding-top:48px;order:1}
-  .standfirst-wrap{order:2}
-  .standfirst{margin-top:24px;padding:0}
-  .act{order:3}
-  .board{grid-template-columns:1fr 1fr;grid-template-rows:46svh auto;gap:6px;padding:6px}
-  .tA{grid-column:1 / 3;grid-row:1}
-  .tB,.tC{grid-column:auto;grid-row:2;aspect-ratio:1}
-  .tD{display:none}
-  .introText{padding:64px var(--margin) 96px}
-  .introText p{grid-column:1 / -1;font-size:var(--s-body)}
-  .feat{padding:0 var(--margin) 96px;display:block}
-  .feat h2{position:sticky;top:0;background:var(--snow);font-size:var(--s-head);padding:12px 0;margin:0 0 24px;z-index:1}
-  .blocks{display:flex;flex-direction:column;gap:56px;padding-top:24px}
-  .how{padding:96px var(--margin)}
-  .howHead h2,.howHead p{grid-column:1 / -1}
-  .steps{grid-template-columns:1fr;gap:32px}
-  .calc{padding:96px var(--margin)}
-  .calcL,.calcR{grid-column:1 / -1}.calcR{margin-top:48px}
-  .about{padding:96px var(--margin)}
-  .bioWrap{grid-column:1 / -1}
-  .bio{line-height:1.25}
-  .cap{width:4.6em;height:4.6em}
-  .facts{grid-column:1 / -1;order:2;flex-direction:row;flex-wrap:wrap;gap:16px 24px;margin-top:32px}
-  .faq{padding:96px var(--margin)}
-  .qa{display:block}
-  .qa + .qa{margin-top:56px}
-  .qa h3,.qa h2{margin-bottom:12px}
-  .contact{padding:96px var(--margin) 72px}
-  .cL,.form{grid-column:1 / -1}.form{grid-template-columns:1fr;margin-top:40px}.fld.full,.form .btn,.form .fine{grid-column:1}
-  .foot{padding:32px var(--margin) 20px;min-height:80svh}
-  .fCols{grid-template-columns:1fr 1fr;gap:32px 20px}
+  :root{--gap:6px;--s-head:10vw;--s-state:22px;--s-lead:21px;--s-body:17px;--s-mega:24vw}
+  .hero{grid-template-columns:1fr 1fr;grid-template-rows:110px auto auto auto auto;height:auto;min-height:0}
+  .name{grid-column:1 / -1;padding:10px 16px}
+  .nav{grid-column:auto!important;grid-row:auto;padding:16px}
+  .stage{grid-column:1 / -1;grid-row:auto;aspect-ratio:4 / 3;position:relative;order:1}
+  .railL{order:2}.railR{order:3}
+  .lede{width:100%;padding:16px}
+  .railL{grid-column:1 / -1;grid-row:auto;grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .railR{grid-column:1 / -1;grid-row:auto;grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .railR .r1,.railR .r2,.railR .r3,.railR .r4{min-height:72px}
+  .book{grid-column:1 / -1;min-height:72px}
+  .services{grid-template-columns:1fr}
+  .svcL{min-height:70svh;padding:32px 20px}
+  .row{grid-template-columns:1fr;gap:10px;padding:24px 20px}
+  .row ul{flex-direction:row;flex-wrap:wrap;gap:0 .4em}
+  .row ul li:not(:last-child)::after{content:","}
+  .how{padding-top:96px}
+  .grow{display:flex;flex-direction:column;align-items:stretch;gap:0}
+  .grow h2{padding:0 14px 28px}
+  .st{height:auto!important}
+  .st1{aspect-ratio:300 / 104;order:1}.c1{order:2}
+  .st2{aspect-ratio:300 / 142;order:3;margin-top:28px}.c2{order:4}
+  .st3{aspect-ratio:300 / 192;order:5;margin-top:28px}.c3{order:6}
+  .cap{padding:16px 14px 0}
+  .calc{padding-top:96px}
+  .cA,.cB{grid-column:1 / -1;padding:24px 20px}
+  .about{padding-top:96px}
+  .place{grid-column:1 / -1}
+  .photo{aspect-ratio:4 / 3}
+  .photo .paper{position:static;width:auto;max-width:none}
+  .photoWrap{grid-column:1 / -1}
+  .strip{grid-template-columns:1fr 1fr;margin-top:40px}.strip .tile:first-child{grid-column:1 / -1;aspect-ratio:3 / 2}
+  .faq{margin-top:96px}
+  .fq{grid-template-columns:1fr;gap:12px;padding:32px 20px}
+  .fq h3,.fq p{grid-column:1 / -1}
+  .fqHead{min-height:30svh}
+  .contact{padding:72px 20px 48px}
+  .bar{grid-template-columns:1fr}
+  .bar input,.bar button{height:60px}
+  .foot{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .foot .tile{min-height:160px}
+  .f5,.f6{grid-column:1 / -1}
+  .f5{order:-2}.f6{order:-1}
+  .f2,.f4{grid-column:auto}
+  .f3,.f1{grid-column:auto}
 }
 </style>
 </head>
 <body>
 
 <header class="hero" id="top">
-  <div class="band">
-    <nav class="bar" aria-label="Hovedmeny">
-      <a class="mark" href="#top">Marcus Larsen</a>
-      <div class="tab"><a class="lnk" href="#tjenester">Tjenester</a><a class="lnk" href="#slik">Slik jobber jeg</a><a class="lnk" href="#om">Om meg</a></div>
-      <a class="btn" href="#kontakt">Book en gratis prat</a>
-    </nav>
-    <div class="cell sky">
-      <canvas id="aurora" aria-label="Animert nordlys over fjellene rundt Harstad" role="img"></canvas>
-      <svg viewBox="0 0 900 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><path d="M0 400V318l70-38 52 22 64-58 48 30 40-26 66 52 58-44 74 60 52-34 46 20 80-70 66 54 46-18 70 46 54-32 60 36v102z" fill="#03060c"/></svg>
-    </div>
-    <div class="cell p1"><img src="https://picsum.photos/id/465/1200/700?grayscale" width="1200" height="700" alt="En mørk fjelltopp stikker opp av tette, hvite skyer."></div>
-    <div class="cell p2"><img src="https://picsum.photos/id/130/600/700?grayscale" width="600" height="700" alt="En måke glir over et grått hav."></div>
-    <div class="cell sun" aria-live="polite">
-      <div>
-        <p class="d hrs" id="dl-hrs">Kort</p>
-        <p id="dl-what">dagslys i Harstad i dag</p>
-        <p class="times" id="dl-times">Lyset endrer seg hver dag.</p>
-      </div>
+  <a class="tile name on-light" href="#top" aria-label="Marcus Larsen, til toppen">
+    <svg viewBox="0 0 1000 120" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><text x="0" y="102" font-size="132" textLength="1000" lengthAdjust="spacingAndGlyphs" letter-spacing="-4">Marcus Larsen</text></svg>
+  </a>
+  <a class="tile nav n1" href="#tjenester">Tjenester</a>
+  <a class="tile nav n2" href="#slik">Slik jobber jeg</a>
+  <a class="tile nav n3" href="#om">Om meg</a>
+  <a class="tile nav n4" href="#kontakt">Kontakt</a>
+
+  <div class="railL">
+    <div class="tile offer on-light"><p class="d">0 kr</p><p>for en første prat. Ingen forpliktelser etterpå.</p></div>
+    <ul class="tile facts"><li>Harstad og omegn</li><li>Hos dere eller på Teams</li><li>Små bedrifter og lag</li><li>Regnskapsbakgrunn</li><li>Kurs i små doser</li></ul>
+  </div>
+
+  <div class="tile stage">
+    <!-- Legg en AI-generert video ved siden av index.html med navnet hero.mp4 (og gjerne hero.webm), så spilles den av her automatisk. Uten video vises bildet under. -->
+    <img class="poster" src="https://picsum.photos/id/465/2000/1300?grayscale" width="2000" height="1300" alt="En mørk fjelltopp stikker opp av tette, hvite skyer.">
+    <video id="heroVideo" muted autoplay loop playsinline preload="metadata" aria-hidden="true"></video>
+    <div class="lede">
+      <h1><span class="mask"><span>Mindre tastearbeid.</span></span><span class="mask"><span>Mer tid til kundene.</span></span></h1>
+      <p>Jeg hjelper små bedrifter i Harstad å gjøre tunge, manuelle oppgaver enklere.</p>
     </div>
   </div>
-  <div class="title">
-    <div class="standfirst-wrap">
-      <p class="standfirst"><strong>Jeg heter Marcus.</strong> Jeg hjelper små bedrifter å bruke dagslyset på noe bedre enn tunge, manuelle oppgaver. Første prat er gratis.</p>
-    </div>
-    <div>
-      <h1 class="d"><span class="mask"><span class="line">Digital hjelp</span></span><span class="mask"><span class="line">i Harstad</span></span></h1>
-      <div class="act">
-        <a class="btn" href="#kontakt">Book en gratis prat</a>
-        <a class="lnk" href="#slik">Se hvordan det foregår</a>
-      </div>
-    </div>
+
+  <div class="railR">
+    <p class="tile r1">Første prat på rundt en time</p>
+    <p class="tile r2">Skriftlig forslag etter uke 2</p>
+    <p class="tile r3">Opplæring for de ansatte</p>
+    <p class="tile r4">Oppfølging etter en måned</p>
+    <a class="tile book on-light" href="#kontakt">Book en gratis prat <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19L19 5M8 5h11v11" stroke="currentColor" stroke-width="2.4"/></svg></a>
   </div>
 </header>
 
-<main>
-<section aria-label="Kort fortalt">
-  <div class="board">
-    <div class="tA reveal"><p class="d"><span class="line">Gjør det</span><span class="line">enklere</span></p></div>
-    <div class="tB reveal"><p class="d big">0 kr</p><p>Det koster en første prat. Ingen forpliktelser etterpå.</p></div>
-    <div class="cell tC reveal"><img src="https://picsum.photos/id/491/700/800?grayscale" width="700" height="800" alt="Øks, hammer, tang og arbeidshansker lagt fram på et mørkt treunderlag." loading="lazy"></div>
-    <div class="cell tD reveal"><img src="https://picsum.photos/id/172/700/800?grayscale" width="700" height="800" alt="En steinmolo forsvinner ut i stille vann og tåke." loading="lazy"></div>
-  </div>
-  <div class="introText">
-    <p class="reveal">De fleste bedrifter har én oppgave alle gruer seg til: fakturaen som tastes for hånd, rapporten som limes sammen fra tre regneark, eller e-posten som skrives på nytt hver uke. Jeg kommer til dere, ser på hvordan dere jobber, og foreslår noe konkret som gjør hverdagen enklere. Det kan være en smartere rutine, bedre bruk av verktøyene dere har, et kort kurs for de ansatte, eller KI der det faktisk sparer tid. Jeg hjelper bedrifter i Harstad og omegn, ansikt til ansikt eller på Teams.</p>
-  </div>
-</section>
+<div class="ticker" aria-hidden="true"><div class="run">
+  <span>Fakturaflyt</span><span>Excel-oversikt</span><span>Teams og deling</span><span>Maler og skjemaer</span><span>Små kurs</span><span>KI der det passer</span><span>Trygg e-post</span>
+  <span>Fakturaflyt</span><span>Excel-oversikt</span><span>Teams og deling</span><span>Maler og skjemaer</span><span>Små kurs</span><span>KI der det passer</span><span>Trygg e-post</span>
+</div></div>
 
-<section class="feat light" id="tjenester" aria-label="Tjenester">
-  <h2 class="d">Dette hjelper jeg med</h2>
-  <div class="blocks">
-    <div class="blk reveal"><h3>Tunge rutiner</h3><ul><li>Finne ut hvor tiden faktisk går</li><li>Fjerne dobbeltarbeid</li><li>Automatisere det som gjentar seg</li><li>Enklere maler og skjemaer</li></ul></div>
-    <div class="blk reveal"><h3>Regneark og tall</h3><ul><li>Ryddigere Excel-ark</li><li>Oversikt over økonomi og drift</li><li>Færre manuelle tastetrykk</li><li>Rapporter som nesten lager seg selv</li></ul></div>
-    <div class="blk reveal"><h3>Verktøyene dere har</h3><ul><li>Office og Teams</li><li>Deling og lagring av filer</li><li>Kalender og e-post</li><li>Systemene dere allerede betaler for</li></ul></div>
-    <div class="blk reveal"><h3>KI der det passer</h3><ul><li>E-post og tekster</li><li>Oppsummering av møter og dokumenter</li><li>Idéarbeid</li><li>Hva som er trygt å legge inn</li></ul></div>
-    <div class="blk reveal"><h3>Små kurs</h3><ul><li>Ett digitalt tema om gangen</li><li>Tilpasset nivået dere er på</li><li>Kort og praktisk</li><li>Hos dere eller på Teams</li></ul></div>
-    <div class="blk reveal"><h3>Trygg hverdag</h3><ul><li>Gode passord</li><li>Kjenne igjen svindel på e-post og telefon</li><li>Sikker deling av filer</li></ul></div>
+<main>
+<section class="services" id="tjenester" aria-label="Tjenester">
+  <div class="svcL on-light">
+    <h2 class="d reveal"><span class="l">Dette gjør</span><span class="r">jeg for dere</span></h2>
+    <div class="svcFoot reveal">
+      <p>Alt starter med en prat om hvordan dere jobber i dag. Så finner vi det som stjeler mest tid.</p>
+      <a class="btn" href="#kontakt">Book en gratis prat</a>
+    </div>
+  </div>
+  <div class="svcR">
+    <div class="row reveal"><h3>Tunge rutiner</h3><p>Vi finner dobbeltarbeid og oppgaver som gjentar seg, og gjør dem enklere.</p><ul><li>Kartlegging</li><li>Maler</li><li>Automatisering</li></ul></div>
+    <div class="row reveal"><h3>Regneark og tall</h3><p>Ryddigere Excel og bedre oversikt, med en regnskapsrådgiver på laget.</p><ul><li>Excel</li><li>Rapporter</li><li>Økonomioversikt</li></ul></div>
+    <div class="row reveal"><h3>Verktøyene dere har</h3><p>Få mer ut av systemene dere allerede betaler for, før dere kjøper noe nytt.</p><ul><li>Office</li><li>Teams</li><li>Fildeling</li></ul></div>
+    <div class="row reveal"><h3>Små kurs</h3><p>Korte, praktiske kurs for de ansatte, ett digitalt tema om gangen.</p><ul><li>Hos dere</li><li>På Teams</li><li>Trygg e-post</li></ul></div>
+    <div class="row reveal"><h3>KI der det passer</h3><p>Verktøy som ChatGPT, Copilot og Claude, brukt der de faktisk sparer tid.</p><ul><li>E-post</li><li>Oppsummering</li><li>Hva er trygt</li></ul></div>
   </div>
 </section>
 
 <section class="how" id="slik" aria-label="Slik jobber jeg">
-  <div class="howHead">
+  <div class="grow">
     <h2 class="d reveal">Fra rot til rutine</h2>
-    <p class="reveal">Samarbeidet følger en enkel arbeidsordre, slik jeg lærte det som vedlikeholdsoperatør. Dere vet hele tiden hva som skjer og hvor lang tid det tar.</p>
-  </div>
-  <svg class="flow" viewBox="0 0 1200 270" role="img" aria-label="Spredte firkanter til venstre samles til et stramt bånd i midten og blir til ryddige rader til høyre."><rect class="sq z1" x="127" y="46" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="36" y="138" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="220" y="227" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="23" y="113" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="97" y="141" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="308" y="39" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="237" y="149" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="218" y="104" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="27" y="214" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="161" y="139" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="212" y="172" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="219" y="162" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="45" y="179" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="233" y="128" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="290" y="121" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="140" y="69" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="262" y="68" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="199" y="218" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="114" y="243" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="194" y="49" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="65" y="126" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="356" y="28" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="132" y="93" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="219" y="119" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="350" y="123" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="32" y="177" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="112" y="102" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="18" y="120" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="230" y="127" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="287" y="41" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="153" y="228" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="39" y="117" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="328" y="205" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="264" y="245" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="355" y="46" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="64" y="167" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="185" y="150" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="111" y="45" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="230" y="86" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="259" y="133" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="174" y="217" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="153" y="104" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="238" y="25" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="364" y="115" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="132" y="23" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="214" y="138" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="231" y="27" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="231" y="45" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="354" y="153" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="54" y="212" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="183" y="84" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="47" y="92" width="12" height="12" fill="#4a6280"/><rect class="sq z1" x="182" y="175" width="12" height="12" fill="#2a3a52"/><rect class="sq z1" x="84" y="237" width="12" height="12" fill="#4a6280"/><rect class="sq z2" x="430" y="115" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="452" y="115" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="474" y="115" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="496" y="115" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="518" y="115" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="540" y="115" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="562" y="115" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="584" y="115" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="606" y="115" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="628" y="115" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="650" y="115" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="672" y="115" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="694" y="115" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="716" y="115" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="738" y="115" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="430" y="129" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="452" y="129" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="474" y="129" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="496" y="129" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="518" y="129" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="540" y="129" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="562" y="129" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="584" y="129" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="606" y="129" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="628" y="129" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="650" y="129" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="672" y="129" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="694" y="129" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="716" y="129" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="738" y="129" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="430" y="143" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="452" y="143" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="474" y="143" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="496" y="143" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="518" y="143" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="540" y="143" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="562" y="143" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="584" y="143" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="606" y="143" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="628" y="143" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="650" y="143" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="672" y="143" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="694" y="143" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="716" y="143" width="12" height="12" fill="#6f8db0"/><rect class="sq z2" x="738" y="143" width="12" height="12" fill="#6f8db0"/><rect class="sq z3" x="850" y="81" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="878" y="81" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="906" y="81" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="934" y="81" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="962" y="81" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="990" y="81" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="1018" y="81" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="1046" y="81" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="1074" y="81" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="1102" y="81" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="1130" y="81" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="1158" y="81" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="850" y="113" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="878" y="113" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="906" y="113" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="934" y="113" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="962" y="113" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="990" y="113" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="1018" y="113" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="1046" y="113" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="1074" y="113" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="1102" y="113" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="1130" y="113" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="1158" y="113" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="850" y="145" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="878" y="145" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="906" y="145" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="934" y="145" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="962" y="145" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="990" y="145" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="1018" y="145" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="1046" y="145" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="1074" y="145" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="1102" y="145" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="1130" y="145" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="1158" y="145" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="850" y="177" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="878" y="177" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="906" y="177" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="934" y="177" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="962" y="177" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="990" y="177" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="1018" y="177" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="1046" y="177" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="1074" y="177" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="1102" y="177" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="1130" y="177" width="12" height="12" fill="#9fd3ff"/><rect class="sq z3" x="1158" y="177" width="12" height="12" fill="#9fd3ff"/></svg>
-  <div class="steps">
-    <div class="reveal"><h3>Kartlegge</h3><p>Uke 1. En prat på rundt en time, og jeg ser på hvordan dere jobber i dag.</p></div>
-    <div class="reveal"><h3>Forenkle</h3><p>Uke 2–4. Dere får et skriftlig forslag, og vi tar det i bruk sammen med kort opplæring.</p></div>
-    <div class="reveal"><h3>Følge opp</h3><p>Etter en måned. Jeg kommer tilbake og ser om det virker i praksis.</p><p class="price">Pris i oppstartsfasen: 0 kr</p></div>
+    <div class="st st1 reveal"><svg class="stageArt" viewBox="0 0 300 200" role="img" aria-label="Spredte firkanter: slik ser rutinene ofte ut i dag."><rect x="132" y="105" width="14" height="14" fill="#7c93ad"/><rect x="132" y="157" width="14" height="14" fill="#4a6280"/><rect x="59" y="97" width="14" height="14" fill="#4a6280"/><rect x="34" y="61" width="14" height="14" fill="#4a6280"/><rect x="156" y="163" width="14" height="14" fill="#4a6280"/><rect x="171" y="77" width="14" height="14" fill="#7c93ad"/><rect x="187" y="115" width="14" height="14" fill="#4a6280"/><rect x="179" y="153" width="14" height="14" fill="#4a6280"/><rect x="24" y="41" width="14" height="14" fill="#4a6280"/><rect x="172" y="143" width="14" height="14" fill="#7c93ad"/><rect x="129" y="155" width="14" height="14" fill="#4a6280"/><rect x="183" y="95" width="14" height="14" fill="#4a6280"/><rect x="133" y="56" width="14" height="14" fill="#4a6280"/><rect x="202" y="63" width="14" height="14" fill="#4a6280"/><rect x="149" y="13" width="14" height="14" fill="#4a6280"/><rect x="118" y="155" width="14" height="14" fill="#7c93ad"/><rect x="26" y="11" width="14" height="14" fill="#4a6280"/><rect x="66" y="169" width="14" height="14" fill="#4a6280"/><rect x="137" y="179" width="14" height="14" fill="#7c93ad"/><rect x="123" y="107" width="14" height="14" fill="#4a6280"/><rect x="221" y="55" width="14" height="14" fill="#4a6280"/><rect x="93" y="11" width="14" height="14" fill="#7c93ad"/><rect x="216" y="29" width="14" height="14" fill="#4a6280"/><rect x="202" y="10" width="14" height="14" fill="#7c93ad"/><rect x="226" y="39" width="14" height="14" fill="#4a6280"/><rect x="131" y="41" width="14" height="14" fill="#4a6280"/><rect x="123" y="75" width="14" height="14" fill="#7c93ad"/><rect x="123" y="45" width="14" height="14" fill="#7c93ad"/><rect x="245" y="178" width="14" height="14" fill="#7c93ad"/><rect x="281" y="11" width="14" height="14" fill="#4a6280"/><rect x="116" y="157" width="14" height="14" fill="#4a6280"/><rect x="20" y="33" width="14" height="14" fill="#7c93ad"/><rect x="79" y="142" width="14" height="14" fill="#7c93ad"/><rect x="235" y="75" width="14" height="14" fill="#4a6280"/></svg></div>
+    <div class="st st2 reveal"><svg class="stageArt" viewBox="0 0 300 200" role="img" aria-label="Firkantene samlet i et stramt bånd: oppgavene samles og forenkles."><rect x="20" y="70" width="14" height="14" fill="#9fb4cc"/><rect x="40" y="70" width="14" height="14" fill="#9fb4cc"/><rect x="60" y="70" width="14" height="14" fill="#9fb4cc"/><rect x="80" y="70" width="14" height="14" fill="#9fb4cc"/><rect x="100" y="70" width="14" height="14" fill="#9fb4cc"/><rect x="120" y="70" width="14" height="14" fill="#9fb4cc"/><rect x="140" y="70" width="14" height="14" fill="#9fb4cc"/><rect x="160" y="70" width="14" height="14" fill="#9fb4cc"/><rect x="180" y="70" width="14" height="14" fill="#9fb4cc"/><rect x="200" y="70" width="14" height="14" fill="#9fb4cc"/><rect x="220" y="70" width="14" height="14" fill="#9fb4cc"/><rect x="240" y="70" width="14" height="14" fill="#9fb4cc"/><rect x="260" y="70" width="14" height="14" fill="#9fb4cc"/><rect x="20" y="88" width="14" height="14" fill="#9fb4cc"/><rect x="40" y="88" width="14" height="14" fill="#9fb4cc"/><rect x="60" y="88" width="14" height="14" fill="#9fb4cc"/><rect x="80" y="88" width="14" height="14" fill="#9fb4cc"/><rect x="100" y="88" width="14" height="14" fill="#9fb4cc"/><rect x="120" y="88" width="14" height="14" fill="#9fb4cc"/><rect x="140" y="88" width="14" height="14" fill="#9fb4cc"/><rect x="160" y="88" width="14" height="14" fill="#9fb4cc"/><rect x="180" y="88" width="14" height="14" fill="#9fb4cc"/><rect x="200" y="88" width="14" height="14" fill="#9fb4cc"/><rect x="220" y="88" width="14" height="14" fill="#9fb4cc"/><rect x="240" y="88" width="14" height="14" fill="#9fb4cc"/><rect x="260" y="88" width="14" height="14" fill="#9fb4cc"/><rect x="20" y="106" width="14" height="14" fill="#9fb4cc"/><rect x="40" y="106" width="14" height="14" fill="#9fb4cc"/><rect x="60" y="106" width="14" height="14" fill="#9fb4cc"/><rect x="80" y="106" width="14" height="14" fill="#9fb4cc"/><rect x="100" y="106" width="14" height="14" fill="#9fb4cc"/><rect x="120" y="106" width="14" height="14" fill="#9fb4cc"/><rect x="140" y="106" width="14" height="14" fill="#9fb4cc"/><rect x="160" y="106" width="14" height="14" fill="#9fb4cc"/><rect x="180" y="106" width="14" height="14" fill="#9fb4cc"/><rect x="200" y="106" width="14" height="14" fill="#9fb4cc"/><rect x="220" y="106" width="14" height="14" fill="#9fb4cc"/><rect x="240" y="106" width="14" height="14" fill="#9fb4cc"/><rect x="260" y="106" width="14" height="14" fill="#9fb4cc"/></svg></div>
+    <div class="st st3 reveal"><svg class="stageArt" viewBox="0 0 300 200" role="img" aria-label="Firkantene i ryddige rader: en fast rutine som virker."><rect x="24" y="30" width="14" height="14" fill="#070b14"/><rect x="50" y="30" width="14" height="14" fill="#070b14"/><rect x="76" y="30" width="14" height="14" fill="#070b14"/><rect x="102" y="30" width="14" height="14" fill="#070b14"/><rect x="128" y="30" width="14" height="14" fill="#070b14"/><rect x="154" y="30" width="14" height="14" fill="#070b14"/><rect x="180" y="30" width="14" height="14" fill="#070b14"/><rect x="206" y="30" width="14" height="14" fill="#070b14"/><rect x="232" y="30" width="14" height="14" fill="#070b14"/><rect x="258" y="30" width="14" height="14" fill="#070b14"/><rect x="24" y="64" width="14" height="14" fill="#070b14"/><rect x="50" y="64" width="14" height="14" fill="#070b14"/><rect x="76" y="64" width="14" height="14" fill="#070b14"/><rect x="102" y="64" width="14" height="14" fill="#070b14"/><rect x="128" y="64" width="14" height="14" fill="#070b14"/><rect x="154" y="64" width="14" height="14" fill="#070b14"/><rect x="180" y="64" width="14" height="14" fill="#070b14"/><rect x="206" y="64" width="14" height="14" fill="#070b14"/><rect x="232" y="64" width="14" height="14" fill="#070b14"/><rect x="258" y="64" width="14" height="14" fill="#070b14"/><rect x="24" y="98" width="14" height="14" fill="#070b14"/><rect x="50" y="98" width="14" height="14" fill="#070b14"/><rect x="76" y="98" width="14" height="14" fill="#070b14"/><rect x="102" y="98" width="14" height="14" fill="#070b14"/><rect x="128" y="98" width="14" height="14" fill="#070b14"/><rect x="154" y="98" width="14" height="14" fill="#070b14"/><rect x="180" y="98" width="14" height="14" fill="#070b14"/><rect x="206" y="98" width="14" height="14" fill="#070b14"/><rect x="232" y="98" width="14" height="14" fill="#070b14"/><rect x="258" y="98" width="14" height="14" fill="#070b14"/><rect x="24" y="132" width="14" height="14" fill="#070b14"/><rect x="50" y="132" width="14" height="14" fill="#070b14"/><rect x="76" y="132" width="14" height="14" fill="#070b14"/><rect x="102" y="132" width="14" height="14" fill="#070b14"/><rect x="128" y="132" width="14" height="14" fill="#070b14"/><rect x="154" y="132" width="14" height="14" fill="#070b14"/><rect x="180" y="132" width="14" height="14" fill="#070b14"/><rect x="206" y="132" width="14" height="14" fill="#070b14"/><rect x="232" y="132" width="14" height="14" fill="#070b14"/><rect x="258" y="132" width="14" height="14" fill="#070b14"/><rect x="24" y="166" width="14" height="14" fill="#070b14"/><rect x="50" y="166" width="14" height="14" fill="#070b14"/><rect x="76" y="166" width="14" height="14" fill="#070b14"/><rect x="102" y="166" width="14" height="14" fill="#070b14"/><rect x="128" y="166" width="14" height="14" fill="#070b14"/><rect x="154" y="166" width="14" height="14" fill="#070b14"/><rect x="180" y="166" width="14" height="14" fill="#070b14"/><rect x="206" y="166" width="14" height="14" fill="#070b14"/><rect x="232" y="166" width="14" height="14" fill="#070b14"/><rect x="258" y="166" width="14" height="14" fill="#070b14"/></svg></div>
+    <div class="cap c1 reveal"><h3>Kartlegge</h3><p>Uke 1. En prat på rundt en time, og jeg ser på hvordan dere jobber i dag.</p></div>
+    <div class="cap c2 reveal"><h3>Forenkle</h3><p>Uke 2 til 4. Dere får et skriftlig forslag, og vi tar det i bruk sammen med kort opplæring.</p></div>
+    <div class="cap c3 reveal"><h3>Følge opp</h3><p>Etter en måned. Jeg kommer tilbake og ser om det virker i praksis.</p><p class="free">Pris i oppstartsfasen: 0 kr</p></div>
   </div>
 </section>
 
-<section class="calc light" aria-label="Regn ut hva en tung oppgave koster">
-  <div class="calcL reveal">
+<section class="calc" aria-label="Regn ut hva en tung oppgave koster">
+  <div class="tile cA reveal">
     <h2 class="d">Regn ut tidstyven</h2>
     <p>Tenk på én oppgave dere gjør for hånd hver dag. Dra i spakene og se hvor mye tid den spiser i løpet av et år.</p>
-  </div>
-  <div class="calcR reveal" aria-live="polite">
-    <p class="d big" id="hours">345</p>
-    <p class="unit">timer i året går med til denne ene oppgaven. Det er omtrent <span id="days">46</span> hele arbeidsdager.</p>
     <div class="ctrl">
       <label for="min"><span>Minutter per dag</span><span id="minOut">30 min</span></label>
       <input id="min" type="range" min="5" max="120" step="5" value="30">
@@ -326,57 +342,75 @@ p,h1,h2,h3,dl,dd,figure{margin:0}
     </div>
     <p class="note">Klarer vi å kutte bare halvparten, får dere tilbake rundt <span id="half">173</span> timer. Regnestykket bruker 230 arbeidsdager i året og 7,5 timer per dag.</p>
   </div>
+  <div class="tile cB reveal on-light" aria-live="polite">
+    <p class="d big" id="hours">345</p>
+    <p class="unit">timer i året går med til denne ene oppgaven. Det er omtrent <span id="days">46</span> hele arbeidsdager.</p>
+  </div>
 </section>
 
 <section class="about" id="om" aria-label="Om meg">
-  <dl class="facts reveal">
-    <div><dt>Jobber som</dt><dd>Regnskapsrådgiver i SpareBank 1 Regnskapshuset Nord-Norge</dd></div>
-    <div><dt>Utdanning</dt><dd>Økonomi og administrasjon, UiT Harstad</dd></div>
-    <div><dt>Frivillig</dt><dd>Røde Kors Digikafe</dd></div>
-  </dl>
-  <div class="bioWrap">
-    <p class="bio reveal"><span class="cap d" aria-hidden="true"><span>M</span></span><b>Jeg heter Marcus Larsen</b> og bor i Harstad. Til daglig er jeg regnskapsrådgiver, og jeg har fagbrev som bore- og vedlikeholdsoperatør, så jeg har sett arbeidsdagen fra både kontorpulten og verkstedgulvet. Jeg liker å gjøre ting enklere for folk.</p>
-    <p class="bio reveal">Prosjektet er nytt, og jeg tar ikke betalt ennå. <a href="#kontakt">Ta kontakt for en uforpliktende prat.</a></p>
+  <div class="aboutHead">
+    <h2 class="d reveal">Hvem står bak</h2>
+    <p class="reveal"><b>Marcus Larsen</b>, regnskapsrådgiver fra Harstad med fagbrev som vedlikeholdsoperatør. Jeg har sett arbeidsdagen fra både kontoret og verkstedgulvet, og liker å gjøre ting enklere.</p>
   </div>
+  <div class="aboutTiles">
+    <div class="photoWrap">
+      <figure class="tile photo reveal">
+        <img src="https://picsum.photos/id/172/1600/1000?grayscale" width="1600" height="1000" alt="En steinmolo som strekker seg ut i stille vann og tett, grå tåke." loading="lazy">
+        <figcaption class="paper">Prosjektet er nytt, og jeg tar ikke betalt ennå. Jeg vil lære hva bedriftene her trenger, og dere får hjelp uten risiko.</figcaption>
+      </figure>
+    </div>
+    <div class="place reveal">
+      <div class="tile placeTile on-light">
+        <p class="d">Harstad</p>
+        <p>Jeg kommer til dere i Harstad og omegn, eller vi tar praten på Teams.</p>
+      </div>
+      <dl class="kv">
+        <div><dt>Jobber som</dt><dd>Regnskapsrådgiver i SpareBank 1 Regnskapshuset Nord-Norge</dd></div>
+        <div><dt>Utdanning</dt><dd>Økonomi og administrasjon, UiT Harstad</dd></div>
+        <div><dt>Fagbrev</dt><dd>Bore- og vedlikeholdsoperatør</dd></div>
+        <div><dt>Frivillig</dt><dd>Røde Kors Digikafe</dd></div>
+      </dl>
+    </div>
+  </div>
+  <figure class="strip">
+    <div class="tile reveal"><img src="https://picsum.photos/id/130/900/1100?grayscale" width="900" height="1100" alt="En måke glir over et grått hav under lyse skyer." loading="lazy"></div>
+    <div class="tile reveal"><img src="https://picsum.photos/id/491/900/1100?grayscale" width="900" height="1100" alt="Øks, hammer, tang og arbeidshansker lagt fram på et mørkt treunderlag." loading="lazy"></div>
+    <div class="tile reveal"><img src="https://picsum.photos/id/552/900/1100?grayscale" width="900" height="1100" alt="En liten seilbåt på rolig sjø med åser i det fjerne." loading="lazy"></div>
+  </figure>
 </section>
 
-<section class="faq light" aria-label="Spørsmål og svar">
-  <div class="qa reveal"><h2 class="d">Det folk lurer på</h2></div>
-  <div class="qa reveal"><h3>Er det virkelig gratis?</h3><p>Ja. Prosjektet er i oppstart, og jeg tar ikke betalt nå. Blir det en betalt tjeneste senere, får dere vite det i god tid.</p></div>
-  <div class="qa reveal"><h3>Må vi være flinke med data?</h3><p>Nei. Vi starter der dere er. Mange av de beste forbedringene handler ikke om ny teknologi, men om å rydde i rutinene dere allerede har.</p></div>
-  <div class="qa reveal"><h3>Hva slags bedrifter hjelper du?</h3><p>Små og mellomstore bedrifter i Harstad og omegn: butikker, håndverkere, kontorer, lag og foreninger.</p></div>
-  <div class="qa reveal"><h3>Hvor mye tid må vi sette av?</h3><p>Den første praten tar rundt en time. Resten avtaler vi etter hva dere ønsker, og jeg gjør det meste av arbeidet mellom møtene.</p></div>
-  <div class="qa reveal"><h3>Hva skjer med informasjonen vår?</h3><p>Det dere forteller meg, blir mellom oss. Jeg deler ingenting videre, og vi går sammen gjennom hva som er trygt å legge inn i nye verktøy.</p></div>
-  <div class="qa reveal"><h3>Hva om forslaget ikke passer?</h3><p>Da er det helt greit. Dere bestemmer selv hva dere vil gå videre med, og har ingen forpliktelser etter praten.</p></div>
+<section class="faq" aria-label="Spørsmål og svar">
+  <div class="fq fqHead on-light"><h2 class="d">Det folk lurer på</h2></div>
+  <div class="fq reveal"><h3>Er det virkelig gratis?</h3><p>Ja. Prosjektet er i oppstart, og jeg tar ikke betalt nå. Blir det en betalt tjeneste senere, får dere vite det i god tid.</p></div>
+  <div class="fq reveal"><h3>Må vi være flinke med data?</h3><p>Nei. Vi starter der dere er. Mange av de beste forbedringene handler ikke om ny teknologi, men om å rydde i rutinene dere allerede har.</p></div>
+  <div class="fq reveal"><h3>Hva slags bedrifter hjelper du?</h3><p>Små og mellomstore bedrifter i Harstad og omegn: butikker, håndverkere, kontorer, lag og foreninger.</p></div>
+  <div class="fq reveal"><h3>Hvor mye tid må vi sette av?</h3><p>Den første praten tar rundt en time. Resten avtaler vi etter hva dere ønsker, og jeg gjør det meste av arbeidet mellom møtene.</p></div>
+  <div class="fq reveal"><h3>Hva skjer med informasjonen vår?</h3><p>Det dere forteller meg, blir mellom oss. Jeg deler ingenting videre, og vi går sammen gjennom hva som er trygt å legge inn i nye verktøy.</p></div>
 </section>
 
-<section class="contact" id="kontakt" aria-label="Kontakt">
-  <div class="cL reveal">
-    <p class="say">Fortell kort hva som tar for mye tid hos dere, så tar jeg kontakt.</p>
-    <a class="mail js-mail" href="mailto:din@epost.no">din@epost.no</a>
-    <p class="where">Harstad og omegn · gratis i oppstartsfasen</p>
+<section class="contact on-light" id="kontakt" aria-label="Kontakt">
+  <div class="reveal">
+    <h2 class="d">Ta en prat</h2>
+    <p class="say">Fortell kort hva som tar for mye tid hos dere, så tar jeg kontakt og avtaler en første prat.</p>
   </div>
-  <form class="form reveal" id="form" aria-label="Kontaktskjema">
-    <label class="fld" for="f-navn">Navn<input id="f-navn" name="navn" type="text" autocomplete="name" required></label>
-    <label class="fld" for="f-bedrift">Bedrift<input id="f-bedrift" name="bedrift" type="text" autocomplete="organization"></label>
-    <label class="fld full" for="f-kontakt">E-post eller telefon<input id="f-kontakt" name="kontakt" type="text" required></label>
-    <label class="fld full" for="f-behov">Hva tar for mye tid hos dere?<textarea id="f-behov" name="behov"></textarea></label>
-    <button class="btn" type="submit">Send forespørsel</button>
-    <p class="fine">Knappen åpner e-posten din med det du har skrevet, klar til å sendes.</p>
+  <form class="bar reveal" id="form" aria-label="Kontaktskjema">
+    <label class="vh" for="f-navn">Navn og bedrift</label><input id="f-navn" name="navn" type="text" autocomplete="name" placeholder="Navn og bedrift" required>
+    <label class="vh" for="f-kontakt">E-post eller telefon</label><input id="f-kontakt" name="kontakt" type="text" placeholder="E-post eller telefon" required>
+    <label class="vh" for="f-behov">Hva tar for mye tid?</label><input id="f-behov" name="behov" type="text" placeholder="Hva tar for mye tid hos dere?">
+    <button type="submit">Send <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19L19 5M8 5h11v11" stroke="currentColor" stroke-width="2.4"/></svg></button>
   </form>
+  <div class="small"><span>Knappen åpner e-posten din med teksten ferdig utfylt.</span><span>Eller skriv direkte: <a class="js-mail" href="mailto:din@epost.no">din@epost.no</a></span></div>
 </section>
 </main>
 
-<footer class="foot light">
-  <div class="fCols">
-    <div><p class="f1">Marcus Larsen</p><p>Digital hjelp for bedrifter</p><p>Harstad, Troms</p></div>
-    <div><p class="f1">På siden</p><p><a href="#tjenester">Tjenester</a></p><p><a href="#slik">Slik jobber jeg</a></p><p><a href="#om">Om meg</a></p></div>
-    <div><p class="f1">Kontakt</p><p><a class="js-mail" href="mailto:din@epost.no">din@epost.no</a></p><p><a href="#kontakt">Kontaktskjema</a></p></div>
-    <div><p class="f1">Tilbudet</p><p>Gratis i oppstartsfasen</p><p>For bedrifter i Harstad og omegn</p></div>
-  </div>
-  <div></div>
-  <svg class="word" viewBox="0 0 1000 160" role="img" aria-label="Marcus Larsen"><text x="0" y="132" font-size="170" textLength="1000" lengthAdjust="spacingAndGlyphs" letter-spacing="-6">Marcus Larsen</text></svg>
-  <p class="legal"><span>© 2026 Marcus Larsen · Laget i Harstad</span><span>Illustrasjonsfoto: Paula Vermeulen, Ryan Jacques, Aleksi Tappura og Todd Quackenbush / Unsplash · Nordlyset er tegnet i kode</span></p>
+<footer class="foot">
+  <div class="tile f1"><p>Digital hjelp for små bedrifter i Harstad og omegn.</p><p>© 2026 Marcus Larsen · Illustrasjonsfoto fra Unsplash: Paula Vermeulen, Aleksi Tappura, Ryan Jacques, Todd Quackenbush og Hugo Kerr</p></div>
+  <nav class="tile f2" aria-label="Bunnmeny"><a href="#tjenester">Tjenester</a><a href="#slik">Slik jobber jeg</a><a href="#om">Om meg</a><a href="#kontakt">Kontakt</a></nav>
+  <div class="tile f3"><p>Harstad, Troms</p><p>Gratis i oppstartsfasen</p></div>
+  <div class="tile f4"><p>E-post</p><a class="js-mail" href="mailto:din@epost.no">din@epost.no</a></div>
+  <div class="tile f5 on-light"><svg viewBox="0 0 1000 150" role="img" aria-label="Marcus Larsen"><text x="0" y="122" font-size="165" textLength="1000" lengthAdjust="spacingAndGlyphs" letter-spacing="-5">Marcus Larsen</text></svg></div>
+  <a class="tile f6 on-light" href="#kontakt"><p>Book en gratis prat</p><svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19L19 5M8 5h11v11" stroke="currentColor" stroke-width="2"/></svg></a>
 </footer>
 
 <script>
@@ -387,107 +421,22 @@ document.documentElement.classList.add('js');
 document.querySelectorAll('.js-mail').forEach(a => { a.href = 'mailto:' + EPOST; a.textContent = EPOST; });
 
 /* Bilder som ikke laster: flisen beholder fargen sin */
-document.querySelectorAll('.cell img').forEach(img => {
+document.querySelectorAll('.tile img').forEach(img => {
   const skjul = () => img.classList.add('gone');
   if (img.complete && img.naturalWidth === 0) skjul(); else img.addEventListener('error', skjul);
 });
 
-/* Dagslys i Harstad (68,80° N, 16,54° Ø), regnet ut for dagens dato */
+/* Video i toppen: spilles bare hvis hero.mp4 / hero.webm finnes ved siden av index.html */
 (function () {
-  const LAT = 68.798, LON = 16.542, rad = Math.PI / 180;
-  function osloDate(offsetDays) {
-    const p = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Oslo', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(Date.now() + offsetDays * 864e5)).split('-').map(Number);
-    return { y: p[0], m: p[1], d: p[2] };
-  }
-  function event(dt, rising) {
-    const N = Math.floor((Date.UTC(dt.y, dt.m - 1, dt.d) - Date.UTC(dt.y, 0, 0)) / 864e5);
-    const lngHour = LON / 15;
-    const t = N + ((rising ? 6 : 18) - lngHour) / 24;
-    const M = 0.9856 * t - 3.289;
-    let L = M + 1.916 * Math.sin(M * rad) + 0.020 * Math.sin(2 * M * rad) + 282.634;
-    L = (L + 360) % 360;
-    let RA = Math.atan(0.91764 * Math.tan(L * rad)) / rad;
-    RA = (RA + 360) % 360;
-    RA += Math.floor(L / 90) * 90 - Math.floor(RA / 90) * 90;
-    RA /= 15;
-    const sinDec = 0.39782 * Math.sin(L * rad), cosDec = Math.cos(Math.asin(sinDec));
-    const cosH = (Math.cos(90.833 * rad) - sinDec * Math.sin(LAT * rad)) / (cosDec * Math.cos(LAT * rad));
-    if (cosH > 1) return 'natt';
-    if (cosH < -1) return 'sol';
-    let H = Math.acos(cosH) / rad;
-    if (rising) H = 360 - H;
-    H /= 15;
-    const T = H + RA - 0.06571 * t - 6.622;
-    const UT = ((T - lngHour) % 24 + 24) % 24;
-    return Date.UTC(dt.y, dt.m - 1, dt.d) + UT * 36e5;
-  }
-  function day(offset) {
-    const dt = osloDate(offset), up = event(dt, true), down = event(dt, false);
-    if (up === 'natt' || down === 'natt') return { kind: 'natt', mins: 0 };
-    if (up === 'sol' || down === 'sol') return { kind: 'sol', mins: 1440 };
-    let mins = Math.round((down - up) / 6e4); if (mins < 0) mins += 1440;
-    return { kind: 'dag', up, down, mins };
-  }
-  const tid = ms => new Intl.DateTimeFormat('nb-NO', { timeZone: 'Europe/Oslo', hour: '2-digit', minute: '2-digit' }).format(ms);
-  const i = day(0), g = day(-1);
-  const hrs = document.getElementById('dl-hrs'), times = document.getElementById('dl-times');
-  const what = document.getElementById('dl-what');
-  if (i.kind === 'natt') { hrs.textContent = 'Mørketid'; what.textContent = 'i Harstad i dag'; times.textContent = 'Sola står ikke opp over horisonten.'; }
-  else if (i.kind === 'sol') { hrs.textContent = 'Midnattssol'; what.textContent = 'i Harstad i dag'; times.textContent = 'Sola går ikke ned i det hele tatt.'; }
-  else {
-    hrs.textContent = Math.floor(i.mins / 60) + ' t ' + (i.mins % 60) + ' min';
-    const d = i.mins - g.mins;
-    times.textContent = 'Opp ' + tid(i.up) + ' · ned ' + tid(i.down) + (g.kind === 'dag' && d !== 0 ? ' · ' + Math.abs(d) + ' min ' + (d < 0 ? 'kortere' : 'lengre') + ' enn i går' : '');
-  }
-})();
-
-/* Nordlys, tegnet i canvas */
-(function () {
-  const c = document.getElementById('aurora'); if (!c || !c.getContext) return;
-  const x = c.getContext('2d');
-  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let w, h, dpr, stars = [], running = true, t0 = performance.now();
-  const ribbons = [
-    { rgb: '159,211,255', base: .58, amp: .12, len: .45, spd: .00011, ph: 0, a: .30 },
-    { rgb: '226,242,255', base: .46, amp: .09, len: .33, spd: .00016, ph: 2, a: .20 },
-    { rgb: '96,160,240', base: .66, amp: .14, len: .62, spd: .00008, ph: 4, a: .24 }
-  ];
-  function size() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    w = c.clientWidth; h = c.clientHeight;
-    c.width = w * dpr; c.height = h * dpr; x.setTransform(dpr, 0, 0, dpr, 0, 0);
-    stars = Array.from({ length: Math.round(w * h / 2600) }, () => [Math.random() * w, Math.random() * h * .7, Math.random() * 1.2 + .3, Math.random() * 6]);
-  }
-  function frame(now) {
-    const t = now - t0;
-    x.globalCompositeOperation = 'source-over';
-    x.fillStyle = '#070b14'; x.fillRect(0, 0, w, h);
-    for (const s of stars) { x.fillStyle = 'rgba(242,245,248,' + (.35 + .3 * Math.sin(t * .001 + s[3])) + ')'; x.fillRect(s[0], s[1], s[2], s[2]); }
-    x.globalCompositeOperation = 'lighter';
-    const step = 3, layers = 26;
-    for (const r of ribbons) {
-      for (let px = 0; px < w; px += step) {
-        const u = px / w;
-        const y = h * (r.base + r.amp * Math.sin(u / r.len * 6.28 + t * r.spd * 6.28 + r.ph) + .04 * Math.sin(u * 23 + t * .0007 + r.ph));
-        const height = h * (.30 + .14 * Math.sin(u * 9 + t * .0004 + r.ph));
-        const ray = Math.pow(Math.abs(Math.sin(u * 70 + t * .0011 + r.ph * 3)), 3);
-        const glow = (.35 + .4 * Math.sin(u * 14 - t * .0009 + r.ph) + .45 * ray);
-        for (let k = 0; k < layers; k++) {
-          const f = 1 - k / layers;
-          x.fillStyle = 'rgba(' + r.rgb + ',' + Math.max(0, r.a * glow * f * f * (k === 0 ? 1.6 : 1)).toFixed(4) + ')';
-          x.fillRect(px, y - (k + 1) * height / layers, step, height / layers + 1);
-        }
-      }
-    }
-    x.globalCompositeOperation = 'source-over';
-    if (running && !still) requestAnimationFrame(frame);
-  }
-  size();
-  window.addEventListener('resize', () => { size(); if (still) frame(performance.now()); });
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(e => { const v = e[0].isIntersecting; if (v && !running) { running = true; requestAnimationFrame(frame); } running = v; }).observe(c);
-  }
-  requestAnimationFrame(frame);
+  const v = document.getElementById('heroVideo');
+  if (!v || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { if (v) v.remove(); return; }
+  [['hero.webm', 'video/webm'], ['hero.mp4', 'video/mp4']].forEach(([src, type]) => {
+    if (v.canPlayType(type)) { const s = document.createElement('source'); s.src = src; s.type = type; v.appendChild(s); }
+  });
+  v.style.opacity = '0';
+  v.addEventListener('loadeddata', () => { v.style.transition = 'opacity .8s ease'; v.style.opacity = '1'; });
+  v.addEventListener('error', () => v.remove(), true);
+  v.load();
 })();
 
 /* Kalkulator */
@@ -507,13 +456,13 @@ min.addEventListener('input', regn); ppl.addEventListener('input', regn); regn()
 document.getElementById('form').addEventListener('submit', e => {
   e.preventDefault();
   const f = new FormData(e.target);
-  const emne = 'Gratis prat' + (f.get('bedrift') ? ' – ' + f.get('bedrift') : '');
-  const tekst = 'Navn: ' + f.get('navn') + '\nBedrift: ' + f.get('bedrift') + '\nKontakt: ' + f.get('kontakt') + '\n\nHva tar for mye tid:\n' + f.get('behov');
+  const emne = 'Gratis prat – ' + f.get('navn');
+  const tekst = 'Navn og bedrift: ' + f.get('navn') + '\nKontakt: ' + f.get('kontakt') + '\n\nHva tar for mye tid:\n' + f.get('behov');
   location.href = 'mailto:' + EPOST + '?subject=' + encodeURIComponent(emne) + '&body=' + encodeURIComponent(tekst);
 });
 
 /* Seksjonene glir inn når de kommer til syne */
-const els = document.querySelectorAll('.reveal, .flow');
+const els = document.querySelectorAll('.reveal');
 if ('IntersectionObserver' in window) {
   const io = new IntersectionObserver(entries => entries.forEach(en => {
     if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
