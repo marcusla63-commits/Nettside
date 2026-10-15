@@ -1,18 +1,22 @@
 <!doctype html>
-<html lang="nb" data-theme="dark" data-accent="korall">
+<html lang="nb">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Marcus Larsen – digital hjelp for bedrifter i Harstad</title>
 <meta name="description" content="Marcus Larsen hjelper små bedrifter i Harstad med enklere rutiner, ryddigere regneark, bedre bruk av verktøyene de har, små kurs og KI der det passer. Første prat er gratis.">
-<meta name="theme-color" content="#0b0b0c">
+<meta name="theme-color" content="#0c0d10">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+/* Fargene er hentet fra portrettet: marineblå t-skjorte, gult bjørkeløv og lys høsthimmel.
+   60 % mørk base, 30 % marineblå og kull, 10 % gull på det viktigste. */
 :root{
-  --page:#000000;--card:#121213;--card-2:#1a1a1c;--ink:#f4f4f2;--soft:#b3b3af;--faint:#4a4a4a;--unlit:#7c7c78;
-  --accent:#ff8a7a;--on-accent:#120a08;--ok:#9be3a8;
+  --page:#0c0d10;--card:#16181d;--card-2:#20232a;
+  --navy:#1c2944;--navy-2:#26365a;
+  --ink:#f1f3f5;--soft:#b6b4ae;--unlit:#7e7c77;
+  --gold:#e8c35a;--on-gold:#191407;--sky:#dfe5ea;--moss:#9cc28a;
   --radius:10px;
   --s-small:14px;
   --s-body:clamp(17px,16.4px + .2vw,18px);
@@ -22,191 +26,191 @@
   --margin:clamp(16px,4vw,64px);
   --font:'Geist','Segoe UI','DejaVu Sans',Arial,sans-serif;
 }
-[data-theme="light"]{--page:#ecebe7;--card:#ffffff;--card-2:#f0efeb;--ink:#111111;--soft:#4f4f4c;--faint:#b7b6b1;--unlit:#8c8b86}
-[data-accent="isbla"]{--accent:#8fcaff;--on-accent:#06121c}
-[data-accent="sol"]{--accent:#ffd166;--on-accent:#1a1300}
-[data-theme="light"][data-accent="korall"]{--accent:#e0523f;--on-accent:#ffffff}
-[data-theme="light"][data-accent="isbla"]{--accent:#1f6fd1;--on-accent:#ffffff}
-[data-theme="light"][data-accent="sol"]{--accent:#b07800;--on-accent:#ffffff}
-
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--page);color:var(--ink);font-family:var(--font);font-size:var(--s-body);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:clip;transition:background-color .4s ease,color .4s ease}
+body{margin:0;background:var(--page);color:var(--ink);font-family:var(--font);font-size:var(--s-body);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:clip}
 img{display:block;max-width:100%}
 a{color:inherit}
-p,h1,h2,h3,figure,dl,dd,ul{margin:0}
+p,h1,h2,h3,figure,dl,dd,ul,blockquote{margin:0}
 ul{padding:0;list-style:none}
 .gone{visibility:hidden}
-.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .soft{color:var(--soft)}
-.acc{color:var(--accent)}
-.wrap{padding-inline:var(--margin)}
-.card{background:var(--card);border-radius:var(--radius);padding:28px;position:relative;overflow:hidden;transition:background-color .4s ease}
+.card{background:var(--card);border-radius:var(--radius);padding:28px;position:relative;overflow:hidden}
 
-.pill{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 28px;border-radius:999px;border:0;background:var(--ink);color:var(--page);text-decoration:none;font:500 15px var(--font);cursor:pointer;transition:transform .18s ease,background-color .18s ease}
-.pill:hover{transform:translateY(-2px);background:var(--accent);color:var(--on-accent)}
+/* Knapper: én form, to utgaver */
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 26px;border-radius:999px;border:0;background:var(--ink);color:var(--page);text-decoration:none;font:500 15px var(--font);cursor:pointer;transition:transform .18s ease,background-color .18s ease,color .18s ease}
+.pill:hover{transform:translateY(-2px);background:var(--gold);color:var(--on-gold)}
 .pill:active{transform:none}
-.inl{color:var(--accent);text-underline-offset:.2em}
-.inl:hover{color:var(--ink)}
+.pill.gold{background:var(--gold);color:var(--on-gold)}
+.pill.gold:hover{background:var(--ink);color:var(--page)}
+.pill.ghost{background:var(--card-2);color:var(--ink)}
+.pill.ghost:hover{background:var(--navy-2);color:var(--ink)}
+.pill.dark{background:var(--on-gold);color:var(--gold)}
+.pill.dark:hover{background:var(--navy);color:var(--ink)}
+.arrow{width:16px;height:16px;transition:transform .2s ease}
+.pill:hover .arrow{transform:translate(3px,-3px)}
 
-/* ============ Hero: the split ============ */
+/* ============ Toppseksjon: delt ============ */
 .hero{display:grid;grid-template-columns:1fr 1fr;min-height:100svh}
-.heroText{background:var(--card);display:grid;grid-template-rows:auto 1fr auto;padding:56px var(--margin) 48px;transition:background-color .4s ease}
+.heroText{background:var(--card);display:grid;grid-template-rows:auto 1fr auto;padding:56px var(--margin) 48px}
 .status{display:flex;align-items:center;gap:10px;font-size:var(--s-small)}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--ok);position:relative}
-.dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--ok);animation:pulse 2.4s ease-out infinite}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--moss);position:relative}
+.dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--moss);animation:pulse 2.4s ease-out infinite}
 @keyframes pulse{0%{transform:scale(1);opacity:.6}70%{transform:scale(3.2);opacity:0}100%{transform:scale(3.2);opacity:0}}
 .heroMid{align-self:center;max-width:560px}
 .heroMid h1{font-size:var(--s-head);font-weight:300;letter-spacing:-.04em;line-height:1.08}
+.heroMid h1 .soft .w{color:var(--soft)}
 .w{display:inline-block;opacity:0;transform:translateY(.25em);animation:word .7s cubic-bezier(.16,1,.3,1) forwards}
 @keyframes word{to{opacity:1;transform:none}}
-.heroMid h1 .soft .w{color:var(--soft)}
 .heroMid p{margin-top:28px;color:var(--soft);max-width:44ch;animation:fade .8s 1.1s ease both}
 .heroMid .pill{margin-top:36px;animation:fade .8s 1.25s ease both}
 @keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-.heroFoot{font-size:var(--s-small);color:var(--soft);line-height:1.6}
-.heroPic{position:relative;overflow:hidden;background:var(--card-2)}
-.heroPic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:settle 1.6s cubic-bezier(.16,1,.3,1) both}
+.heroFoot{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.heroFoot p{font-size:var(--s-small);color:var(--soft)}
+.heroPic{position:relative;overflow:hidden;background:var(--navy)}
+.heroPic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;animation:settle 1.6s cubic-bezier(.16,1,.3,1) both}
 @keyframes settle{from{transform:scale(1.08)}to{transform:none}}
 
 /* ============ Bento ============ */
-.bento{display:grid;grid-template-columns:23fr 50fr 23fr;gap:12px;padding:64px var(--margin) 0}
-.bA{display:flex;flex-direction:column;gap:18px}
-.bA .big{font-size:var(--s-lead);line-height:1.2;color:var(--accent);letter-spacing:-.02em}
-.bA .soft{font-size:var(--s-small)}
-.bA .pill{align-self:flex-start;min-height:44px;padding:0 22px;margin-top:auto}
-.clock{padding-bottom:24px}
-.clock #date{font-size:var(--s-small);color:var(--soft)}
-.clock .t{font-size:var(--s-lead);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
-.bB{display:flex;flex-direction:column;justify-content:space-between;min-height:360px}
-.bB .lbl{font-size:var(--s-small);color:var(--soft)}
-.lblRow{display:flex;align-items:center;gap:20px}
-.slides{position:relative;flex:1}
-.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transform:translateX(16px);transition:opacity .5s ease,transform .5s ease,visibility 0s .5s;pointer-events:none}
-.slide.on{opacity:1;visibility:visible;transform:none;pointer-events:auto;transition:opacity .5s ease,transform .5s ease,visibility 0s}
-.slide blockquote{margin:0;font-size:var(--s-state);line-height:1.18;letter-spacing:-.02em;font-weight:400}
-.slide .fix{margin-top:24px;color:var(--soft);max-width:48ch}
+.bento{display:grid;grid-template-columns:1fr 2fr;gap:12px;padding:64px var(--margin) 0;align-items:stretch}
+.bA{background:var(--gold);color:var(--on-gold);display:flex;flex-direction:column;gap:18px}
+.bA .t{font-size:var(--s-lead);font-variant-numeric:tabular-nums;letter-spacing:-.01em;font-weight:500}
+.bA .date{font-size:var(--s-small);opacity:.8}
+.bA .big{font-size:var(--s-lead);line-height:1.2;letter-spacing:-.02em;margin-top:12px}
+.bA .small{font-size:var(--s-small)}
+.bA .pill{align-self:flex-start;margin-top:auto}
+.bB{background:var(--navy);display:flex;flex-direction:column;gap:24px}
+.slides{display:grid}
+.slide{grid-area:1 / 1;opacity:0;visibility:hidden;transform:translateX(16px);transition:opacity .5s ease,transform .5s ease,visibility 0s .5s}
+.slide.on{opacity:1;visibility:visible;transform:none;transition:opacity .5s ease,transform .5s ease,visibility 0s}
+.slide blockquote{font-size:var(--s-state);line-height:1.18;letter-spacing:-.02em;font-weight:400;max-width:26ch}
+.slide .fix{margin-top:20px;color:#c3cbe0;max-width:52ch}
 .slide .fix b{color:var(--ink);font-weight:500}
-.ctl{display:flex;justify-content:space-between;align-items:center;margin-top:28px}
+.ctl{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
+.lblRow{display:flex;align-items:center;gap:20px}
+.lbl{font-size:var(--s-small);color:#c3cbe0}
 .dots{display:flex;gap:8px}
-.dots button{width:8px;height:8px;border-radius:50%;border:0;padding:0;background:var(--faint);cursor:pointer;position:relative}
+.dots button{width:8px;height:8px;border-radius:50%;border:0;padding:0;background:#4a5a80;cursor:pointer;position:relative}
 .dots button::before{content:"";position:absolute;inset:-14px}
-.dots button[aria-current="true"]{background:var(--ink)}
+.dots button[aria-current="true"]{background:var(--gold)}
 .arrows{display:flex;gap:4px}
-.arrows button{width:44px;height:44px;border:0;background:none;color:var(--soft);cursor:pointer;border-radius:50%;transition:color .2s ease,background-color .2s ease}
-.arrows button:hover{color:var(--ink);background:var(--card-2)}
-.bC{display:grid;grid-template-rows:1fr 1fr;gap:12px}
-.bC h3{font-size:var(--s-body);font-weight:500}
-.bC p{font-size:var(--s-small);color:var(--soft);margin-top:6px}
-.chips{display:flex;gap:8px;margin-top:18px;width:max-content;animation:chips 22s linear infinite}
-.chips span{font-size:13px;padding:8px 12px;border-radius:8px;background:var(--card-2);white-space:nowrap}
-@keyframes chips{to{transform:translateX(-50%)}}
-.aa{position:absolute;right:16px;bottom:-14px;width:120px;height:auto}
-.aa text{font-family:var(--font);font-weight:300;fill:var(--accent)}
+.arrows button{width:44px;height:44px;border:0;background:none;color:#c3cbe0;cursor:pointer;border-radius:50%;font-size:18px;transition:color .2s ease,background-color .2s ease}
+.arrows button:hover{color:var(--ink);background:var(--navy-2)}
 
-/* ============ Ticker of the everyday ============ */
+/* Verktøy med logoer */
+.tools{grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:28px;align-items:center}
+.tools h3{font-size:var(--s-lead);font-weight:400;letter-spacing:-.02em}
+.tools p{font-size:var(--s-small);color:var(--soft);margin-top:6px;max-width:34ch}
+.belt{overflow:hidden}
+.chips{display:flex;gap:10px;width:max-content;animation:roll 30s linear infinite}
+.belt:hover .chips{animation-play-state:paused}
+.chip{display:flex;align-items:center;gap:10px;padding:10px 16px 10px 12px;border-radius:999px;background:var(--card-2);white-space:nowrap;font-size:15px}
+.chip img{width:24px;height:24px;object-fit:contain}
+@keyframes roll{to{transform:translateX(-50%)}}
+
+/* ============ Rullebånd ============ */
 .ticker{overflow:hidden;padding:120px 0 0}
-.ticker .run{display:flex;gap:72px;width:max-content;animation:chips 40s linear infinite;color:var(--unlit);font-size:var(--s-lead);letter-spacing:-.02em;font-weight:500}
+.ticker .run{display:flex;gap:72px;width:max-content;animation:roll 44s linear infinite;color:var(--unlit);font-size:var(--s-lead);letter-spacing:-.02em;font-weight:500}
 .ticker:hover .run{animation-play-state:paused}
 
-/* ============ Statement: words light up on scroll ============ */
-.statement{background:var(--card);margin-top:120px;padding:160px var(--margin);transition:background-color .4s ease}
+/* ============ Avsnitt som lyses opp ============ */
+.statement{background:var(--card);margin-top:120px;padding:160px var(--margin)}
 .statement p{font-size:var(--s-state);line-height:1.2;letter-spacing:-.025em;max-width:40ch}
 .statement p + p{margin-top:.9em}
 .statement .sw{color:var(--unlit);transition:color .25s ease}
 .statement .sw.lit{color:var(--ink)}
+.statement .sw.lit.key,.statement .k{color:var(--gold)}
 
-/* ============ Services: a deck ============ */
+/* ============ Tjenester: kortstokk ============ */
 .svc{padding:160px var(--margin) 0}
 .svcHead h2{font-size:var(--s-head);font-weight:300;letter-spacing:-.04em;line-height:1.05}
 .svcHead p{margin-top:20px;color:var(--soft);max-width:44ch}
 .deck{margin-top:72px}
-.dc{position:sticky;top:7vh;display:grid;grid-template-columns:1fr 1fr;min-height:72vh;background:var(--card);border-radius:var(--radius);overflow:hidden;margin-bottom:4vh;transform-origin:50% 0;transition:background-color .4s ease}
+.dc{position:sticky;top:7vh;display:grid;grid-template-columns:1fr 1fr;min-height:72vh;background:var(--card);border-radius:var(--radius);overflow:hidden;margin-bottom:4vh;transform-origin:50% 0}
+.dc:nth-child(2){background:var(--navy)}
+.dc:nth-child(2) li{background:var(--navy-2)}
 .dcText{padding:48px;display:flex;flex-direction:column}
-.dcText .name{color:var(--accent);font-size:var(--s-body)}
+.dcText .name{color:var(--gold)}
 .dcText h3{font-size:var(--s-state);font-weight:400;letter-spacing:-.025em;line-height:1.18;margin-top:auto;max-width:24ch}
 .dcText ul{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
 .dcText li{font-size:13px;padding:8px 12px;border-radius:8px;background:var(--card-2)}
 .dcText .pill{align-self:flex-start;margin-top:32px;min-height:44px;padding:0 22px}
-.dcPic{position:relative;background:var(--card-2)}
+.dcPic{position:relative;background:var(--navy-2)}
 .dcPic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .dcShade{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none;border-radius:var(--radius)}
 
-/* ============ How: three steps ============ */
+/* ============ Slik jobber vi ============ */
 .how{padding:120px var(--margin) 0}
 .how h2{font-size:var(--s-head);font-weight:300;letter-spacing:-.04em}
 .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:48px}
 .steps .card{min-height:300px;display:flex;flex-direction:column}
-.steps .when{color:var(--accent);font-size:var(--s-small)}
+.steps .card:nth-child(3){background:var(--sky);color:var(--page)}
+.steps .card:nth-child(3) p{color:#3d4550}
+.steps .card:nth-child(3) .when{color:#6b5410}
+.steps .when{color:var(--gold);font-size:var(--s-small)}
 .steps h3{font-size:var(--s-state);font-weight:400;letter-spacing:-.025em;margin-top:auto}
 .steps p{color:var(--soft);margin-top:10px;max-width:34ch}
 
-/* ============ Play: change the page ============ */
-.play{padding:160px var(--margin) 0}
-.play h2{font-size:var(--s-head);font-weight:300;letter-spacing:-.04em}
-.play > p{margin-top:16px;color:var(--soft);max-width:46ch}
-.toys{display:grid;grid-template-columns:1fr 1fr 2fr;gap:12px;margin-top:48px}
-.toys .card{min-height:340px;display:flex;flex-direction:column}
-.toys h3{font-size:var(--s-body);font-weight:500;margin-top:auto}
-.toys .card > p{font-size:var(--s-small);color:var(--soft);margin-top:6px;max-width:36ch}
-.sw2{display:flex;gap:10px;margin-bottom:28px}
-.sw2 button{min-height:44px;padding:0 18px;border-radius:999px;border:0;background:var(--card-2);color:var(--ink);font:500 14px var(--font);cursor:pointer;transition:background-color .2s ease,color .2s ease,border-color .2s ease}
-.sw2 button[aria-pressed="true"]{background:var(--ink);color:var(--page)}
-.circles{display:flex;margin-bottom:28px}
-.circles button{width:72px;height:72px;border-radius:50%;border:3px solid var(--card);cursor:pointer;margin-right:-16px;transition:transform .2s ease}
-.circles button:hover{transform:translateY(-4px)}
-.circles button[aria-pressed="true"]{transform:translateY(-8px)}
-.c-korall{background:#ff8a7a}.c-isbla{background:#8fcaff}.c-sol{background:#ffd166}
-.toys .calcCard .num{font-size:clamp(72px,8vw,128px);font-weight:300;letter-spacing:-.05em;line-height:.85;color:var(--accent);margin:0}
-.toys .calcCard .unit{font-size:var(--s-body);color:var(--ink);margin-top:12px;max-width:40ch}
-.ctrl{margin-top:20px}
-.ctrl label{display:flex;justify-content:space-between;font-size:var(--s-small);margin-bottom:2px}
-.ctrl input{width:100%;height:40px;margin:0;accent-color:var(--accent);cursor:pointer;background:transparent}
+/* ============ Kalkulator ============ */
+.calc{padding:160px var(--margin) 0}
+.calcCard{background:var(--navy);display:grid;grid-template-columns:1fr 1fr;gap:48px;padding:48px}
+.calcCard h2{font-size:var(--s-head);font-weight:300;letter-spacing:-.04em;line-height:1.05}
+.calcCard .intro{margin-top:16px;color:#c3cbe0;max-width:40ch}
+.ctrl{margin-top:28px}
+.ctrl label{display:flex;justify-content:space-between;font-size:var(--s-small);color:#c3cbe0;margin-bottom:2px}
+.ctrl label b{color:var(--ink);font-weight:500}
+.ctrl input{width:100%;height:40px;margin:0;accent-color:var(--gold);cursor:pointer;background:transparent}
+.result{display:flex;flex-direction:column;justify-content:flex-end}
+.result .num{font-size:clamp(88px,10vw,160px);font-weight:300;letter-spacing:-.05em;line-height:.85;color:var(--gold)}
+.result .unit{font-size:var(--s-lead);margin-top:14px;max-width:28ch;line-height:1.3}
+.result .note{font-size:var(--s-small);color:#c3cbe0;margin-top:16px}
 
-/* ============ About ============ */
+/* ============ Om meg ============ */
 .about{padding:160px var(--margin) 0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px}
 .aboutMain{grid-column:1 / 8;display:flex;flex-direction:column;justify-content:space-between;min-height:352px}
 .about h2{font-size:var(--s-head);font-weight:300;letter-spacing:-.04em}
 .about .say{font-size:var(--s-lead);line-height:1.3;max-width:40ch;margin-top:32px}
 .facts{grid-column:8 / 13;display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .facts .card{display:flex;flex-direction:column;justify-content:flex-end;min-height:170px}
-.facts dt{color:var(--accent);font-size:var(--s-small)}
+.facts dt{color:var(--gold);font-size:var(--s-small)}
 .facts dd{margin-top:6px}
 
-/* ============ FAQ ============ */
+/* ============ Spørsmål ============ */
 .faq{padding:160px var(--margin) 0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px}
 .faq h2{grid-column:1 / 5;font-size:var(--s-head);font-weight:300;letter-spacing:-.04em;line-height:1.05}
 .qs{grid-column:6 / 13}
-details{border-radius:var(--radius);background:var(--card);margin-bottom:8px;transition:background-color .4s ease}
+details{border-radius:var(--radius);background:var(--card);margin-bottom:8px;transition:background-color .25s ease}
+details[open]{background:var(--card-2)}
 summary{list-style:none;cursor:pointer;padding:22px 28px;display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:var(--s-lead);letter-spacing:-.015em;min-height:44px}
 summary::-webkit-details-marker{display:none}
-summary::after{content:"+";font-size:28px;font-weight:300;color:var(--soft);transition:transform .25s ease}
+summary::after{content:"+";font-size:28px;font-weight:300;color:var(--gold);transition:transform .25s ease}
 details[open] summary::after{transform:rotate(45deg)}
 details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
 
-/* ============ Contact ============ */
+/* ============ Kontakt ============ */
 .contact{padding:160px var(--margin) 0}
-.cc{display:grid;grid-template-columns:1fr 1fr;gap:48px;padding:56px}
+.cc{display:grid;grid-template-columns:1fr 1fr;gap:48px;padding:56px;background:var(--gold);color:var(--on-gold)}
 .cc h2{font-size:var(--s-head);font-weight:300;letter-spacing:-.04em;line-height:1.05}
-.cc .say{color:var(--soft);margin-top:20px;max-width:40ch}
-.cc .mail{display:inline-block;margin-top:32px;font-size:var(--s-lead)}
+.cc .say{margin-top:20px;max-width:40ch}
+.cc .mail{display:inline-block;margin-top:32px;font-size:var(--s-lead);color:var(--on-gold);text-underline-offset:.2em}
 .form{display:flex;flex-direction:column;gap:12px}
-.form label{font-size:var(--s-small);color:var(--soft)}
-.form input,.form textarea{width:100%;margin-top:6px;font:400 var(--s-body) var(--font);color:var(--ink);background:var(--card-2);border:2px solid transparent;border-radius:8px;padding:14px 16px;min-height:52px;transition:border-color .2s ease}
-.form input:focus,.form textarea:focus{border-color:var(--accent);outline:none}
+.form label{font-size:var(--s-small);font-weight:500}
+.form input,.form textarea{width:100%;margin-top:6px;font:400 var(--s-body) var(--font);color:var(--on-gold);background:#f4dc93;border:2px solid transparent;border-radius:8px;padding:14px 16px;min-height:52px;transition:border-color .2s ease,background-color .2s ease}
+.form input:focus,.form textarea:focus{border-color:var(--on-gold);background:#fbecc0;outline:none}
 .form textarea{min-height:120px;resize:vertical}
 .form .pill{align-self:flex-start;margin-top:8px}
-.form .fine{font-size:var(--s-small);color:var(--soft)}
+.form .fine{font-size:var(--s-small)}
+.cc :focus-visible{outline-color:var(--on-gold)}
 
-/* ============ Footer ============ */
+/* ============ Bunn ============ */
 .foot{padding:120px var(--margin) 40px}
 .word{width:100%;height:auto;display:block}
 .word text{font-family:var(--font);font-weight:300;fill:var(--ink)}
 .legal{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:32px;font-size:var(--s-small);color:var(--soft)}
 .legal a{text-decoration:none}.legal a:hover{color:var(--ink)}
 
-/* ============ Entrances ============ */
+/* ============ Inngang ============ */
 .js .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)}
 .js .reveal.in{opacity:1;transform:none}
 
@@ -220,17 +224,15 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
   .dc{position:relative;top:auto}
 }
 
-/* ============ Phone ============ */
+/* ============ Mobil ============ */
 @media (max-width:900px){
   :root{--s-head:clamp(34px,9vw,44px);--s-state:24px;--s-lead:20px;--s-body:17px}
   .hero{grid-template-columns:1fr;min-height:0}
-  .heroPic{order:-1;height:58svh}
+  .heroPic{order:-1;height:62svh}
   .heroText{padding:28px var(--margin) 32px;gap:40px;display:flex;flex-direction:column}
   .status{order:3}
   .bento{grid-template-columns:1fr;padding-top:12px}
-  .bB{min-height:440px}
-  .bC{grid-template-rows:auto;grid-template-columns:1fr 1fr}
-  .bC .card{min-height:180px}
+  .tools{grid-template-columns:1fr;gap:20px}
   .statement{margin-top:72px;padding:96px var(--margin)}
   .svc{padding-top:96px}
   .dc{grid-template-columns:1fr;min-height:0;position:relative;top:auto;margin-bottom:12px}
@@ -240,10 +242,9 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
   .how{padding-top:72px}
   .steps{grid-template-columns:1fr}
   .steps .card{min-height:200px}
-  .play{padding-top:96px}
-  .toys{grid-template-columns:1fr 1fr}
-  .calcCard{grid-column:1 / -1}
-  .toys .card{min-height:260px}
+  .calc{padding-top:96px}
+  .calcCard{grid-template-columns:1fr;padding:28px 24px;gap:36px}
+  .result{order:-1}
   .about{padding-top:96px;grid-template-columns:1fr}
   .aboutMain,.facts{grid-column:1 / -1}
   .aboutMain{min-height:0;gap:24px}
@@ -255,11 +256,7 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
   .contact{padding-top:96px}
   .cc{grid-template-columns:1fr;padding:28px 20px;gap:36px}
 }
-@media (max-width:520px){
-  .bC{grid-template-columns:1fr}
-  .toys{grid-template-columns:1fr}
-  .facts{grid-template-columns:1fr}
-}
+@media (max-width:520px){.facts{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -272,24 +269,26 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
       <p>Jeg heter Marcus og hjelper små bedrifter å gjøre tunge, manuelle oppgaver enklere. Første prat er gratis.</p>
       <a class="pill" href="#tjenester">Se hva jeg kan hjelpe med</a>
     </div>
-    <p class="heroFoot">Skriv til meg på <a class="inl js-mail" href="mailto:din@epost.no">din@epost.no</a><br>eller book en gratis prat <a class="inl" href="#kontakt">her</a>.</p>
+    <div class="heroFoot">
+      <a class="pill gold" href="#kontakt">Ta kontakt <svg class="arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12L12 4M6 4h6v6" stroke="currentColor" stroke-width="1.8"/></svg></a>
+      <p>Gratis og uforpliktende</p>
+    </div>
   </div>
   <figure class="heroPic">
-    <!-- Portrett: legg bildet ditt ved siden av index.html som marcus.jpg, bytt src under til "marcus.jpg" og alt-teksten til "Marcus Larsen". -->
-    <img id="portrait" src="https://picsum.photos/id/465/1400/1800?grayscale" width="1400" height="1800" alt="En mørk fjelltopp stikker opp av tette, hvite skyer.">
+    <img src="marcus.jpg" width="1200" height="1600" alt="Marcus Larsen står med armene i kors foran et vann og fjell i høstfarger.">
   </figure>
 </header>
 
 <main>
 <section class="bento" aria-label="Kort fortalt">
   <div class="card bA reveal">
-    <div class="clock" aria-live="off"><p class="t" id="time">--:--:--</p><p id="date">Harstad</p></div>
+    <div aria-live="off"><p class="t" id="time">--:--:--</p><p class="date" id="date">Harstad</p></div>
     <p class="big">Fra rot til rutine, fra første prat til ferdig løsning.</p>
-    <p class="soft">Har dere en oppgave som tar for mye tid? Fortell meg om den, så ser vi på den sammen.</p>
-    <a class="pill" href="#kontakt">Si hei</a>
+    <p class="small">Har dere en oppgave som tar for mye tid? Fortell meg om den, så ser vi på den sammen.</p>
+    <a class="pill dark" href="#kontakt">Si hei</a>
   </div>
 
-  <div class="card bB reveal" aria-roledescription="karusell" aria-label="Kjenner du deg igjen?">
+  <div class="card bB reveal" aria-roledescription="karusell" aria-label="Typiske utfordringer">
     <div class="slides" id="slides">
       <div class="slide on"><blockquote>«Vi taster inn de samme tallene i tre forskjellige systemer.»</blockquote><p class="fix"><b>Det jeg ser på:</b> om tallene kan flyte automatisk mellom systemene, eller samles ett sted.</p></div>
       <div class="slide"><blockquote>«Månedsrapporten tar en hel dag å lime sammen.»</blockquote><p class="fix"><b>Det jeg ser på:</b> et Excel-oppsett som henter tallene selv, så rapporten nesten lager seg selv.</p></div>
@@ -302,16 +301,24 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
     </div>
   </div>
 
-  <div class="bC">
-    <div class="card reveal">
-      <h3>Verktøyene dere har</h3>
-      <p>Mer ut av systemene dere allerede betaler for.</p>
-      <div class="chips" aria-hidden="true"><span>Excel</span><span>Teams</span><span>Outlook</span><span>OneDrive</span><span>Fiken</span><span>Tripletex</span><span>ChatGPT</span><span>Copilot</span><span>Excel</span><span>Teams</span><span>Outlook</span><span>OneDrive</span><span>Fiken</span><span>Tripletex</span><span>ChatGPT</span><span>Copilot</span></div>
+  <div class="card tools reveal">
+    <div>
+      <h3>Verktøyene dere allerede har</h3>
+      <p>Mer ut av programmene dere bruker hver dag, før dere kjøper noe nytt.</p>
     </div>
-    <div class="card reveal">
-      <svg class="aa" viewBox="0 0 120 80" aria-hidden="true"><text x="0" y="74" font-size="96" letter-spacing="-5">Aa</text></svg>
-      <h3>Små kurs</h3>
-      <p>Ett digitalt tema om gangen, tilpasset nivået deres.</p>
+    <div class="belt" aria-label="Programmer jeg hjelper med">
+      <!-- Logoer: legg offisielle logofiler i mappen logos/ med disse navnene (svg eller png). Mangler en fil, vises bare navnet. -->
+      <div class="chips" id="chips">
+        <span class="chip"><img src="logos/excel.svg" alt="" width="24" height="24">Excel</span>
+        <span class="chip"><img src="logos/word.svg" alt="" width="24" height="24">Word</span>
+        <span class="chip"><img src="logos/outlook.svg" alt="" width="24" height="24">Outlook</span>
+        <span class="chip"><img src="logos/teams.svg" alt="" width="24" height="24">Teams</span>
+        <span class="chip"><img src="logos/onedrive.svg" alt="" width="24" height="24">OneDrive</span>
+        <span class="chip"><img src="logos/sharepoint.svg" alt="" width="24" height="24">SharePoint</span>
+        <span class="chip"><img src="logos/copilot.svg" alt="" width="24" height="24">Copilot</span>
+        <span class="chip"><img src="logos/chatgpt.svg" alt="" width="24" height="24">ChatGPT</span>
+        <span class="chip"><img src="logos/claude.svg" alt="" width="24" height="24">Claude</span>
+      </div>
     </div>
   </div>
 </section>
@@ -322,8 +329,8 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
 </div></div>
 
 <section class="statement" aria-label="Slik tenker jeg">
-  <p class="lightup">De fleste bedrifter trenger ikke flere systemer. De trenger at de de har, fungerer sammen, og at folk vet hvordan de brukes.</p>
-  <p class="lightup">Jeg har sett arbeidsdagen fra både kontorpulten og verkstedgulvet. Derfor starter jeg alltid med hvordan dere jobber i dag, ikke med det nyeste verktøyet.</p>
+  <p class="lightup">De fleste bedrifter trenger ikke flere systemer. De trenger at de de har, <span class="k">fungerer sammen,</span> og at folk vet hvordan de brukes.</p>
+  <p class="lightup">Jeg har sett arbeidsdagen fra både kontorpulten og verkstedgulvet. Derfor starter jeg alltid med hvordan dere <span class="k">jobber i dag,</span> ikke med det nyeste verktøyet.</p>
 </section>
 
 <section class="svc" id="tjenester" aria-label="Tjenester">
@@ -343,12 +350,12 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
       <span class="dcShade" aria-hidden="true"></span>
     </article>
     <article class="dc">
-      <div class="dcText"><p class="name">Verktøyene dere har</p><h3>Mer ut av systemene dere allerede har.</h3><ul><li>Office</li><li>Teams</li><li>Fildeling</li></ul><a class="pill" href="#kontakt">Spør om dette</a></div>
+      <div class="dcText"><p class="name">Verktøyene dere har</p><h3>Mer ut av programmene dere allerede bruker.</h3><ul><li>Office</li><li>Teams</li><li>Fildeling</li></ul><a class="pill" href="#kontakt">Spør om dette</a></div>
       <div class="dcPic"><img src="https://picsum.photos/id/130/1200/1200?grayscale" width="1200" height="1200" alt="En måke glir over et grått hav under lyse skyer." loading="lazy"></div>
       <span class="dcShade" aria-hidden="true"></span>
     </article>
     <article class="dc">
-      <div class="dcText"><p class="name">Små kurs og KI</p><h3>Korte kurs, og KI der det faktisk hjelper.</h3><ul><li>Hos dere</li><li>På Teams</li><li>Trygg bruk</li></ul><a class="pill" href="#kontakt">Spør om dette</a></div>
+      <div class="dcText"><p class="name">Små kurs og KI</p><h3>Korte kurs, og KI der det faktisk hjelper.</h3><ul><li>Ett tema om gangen</li><li>Hos dere</li><li>På Teams</li><li>Trygg bruk</li></ul><a class="pill" href="#kontakt">Spør om dette</a></div>
       <div class="dcPic"><img src="https://picsum.photos/id/552/1200/1200?grayscale" width="1200" height="1200" alt="En liten seilbåt på rolig sjø med åser i det fjerne." loading="lazy"></div>
       <span class="dcShade" aria-hidden="true"></span>
     </article>
@@ -364,24 +371,18 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
   </div>
 </section>
 
-<section class="play" aria-label="Prøv selv">
-  <h2 class="reveal">Prøv selv</h2>
-  <p class="reveal">Små digitale grep kan endre mye. Juster siden etter din smak, eller regn ut hva én tung oppgave koster dere.</p>
-  <div class="toys">
-    <div class="card reveal">
-      <div class="sw2" role="group" aria-label="Tema"><button type="button" data-theme-btn="dark" aria-pressed="true">Mørk</button><button type="button" data-theme-btn="light" aria-pressed="false">Lys</button></div>
-      <h3>Lys eller mørk</h3><p>Bytt tema på hele siden.</p>
+<section class="calc" aria-label="Regn ut tidstyven">
+  <div class="card calcCard reveal">
+    <div>
+      <h2>Regn ut tidstyven</h2>
+      <p class="intro">Tenk på én oppgave dere gjør for hånd hver dag. Dra i spakene og se hvor mye tid den spiser i løpet av et år.</p>
+      <div class="ctrl"><label for="min"><span>Minutter per dag</span><b id="minOut">30 min</b></label><input id="min" type="range" min="5" max="120" step="5" value="30"></div>
+      <div class="ctrl"><label for="ppl"><span>Ansatte som gjør den</span><b id="pplOut">3</b></label><input id="ppl" type="range" min="1" max="20" step="1" value="3"></div>
     </div>
-    <div class="card reveal">
-      <div class="circles" role="group" aria-label="Aksentfarge"><button type="button" class="c-korall" data-accent-btn="korall" aria-pressed="true" aria-label="Korall"></button><button type="button" class="c-isbla" data-accent-btn="isbla" aria-pressed="false" aria-label="Isblå"></button><button type="button" class="c-sol" data-accent-btn="sol" aria-pressed="false" aria-label="Sol"></button></div>
-      <h3>Farge</h3><p>Velg aksentfargen siden bruker.</p>
-    </div>
-    <div class="card calcCard reveal" aria-live="polite">
+    <div class="result" aria-live="polite">
       <p class="num" id="hours">345</p>
-      <p class="unit">timer i året går med til én oppgave som tar <span id="minOut">30 min</span> om dagen for <span id="pplOut">3</span> ansatte. Det er omtrent <span id="days">46</span> arbeidsdager.</p>
-      <div class="ctrl"><label for="min"><span>Minutter per dag</span></label><input id="min" type="range" min="5" max="120" step="5" value="30"></div>
-      <div class="ctrl"><label for="ppl"><span>Ansatte som gjør den</span></label><input id="ppl" type="range" min="1" max="20" step="1" value="3"></div>
-      <h3>Regn ut tidstyven</h3><p>Regnet med 230 arbeidsdager og 7,5 timer per dag.</p>
+      <p class="unit">timer i året, eller omtrent <span id="days">46</span> hele arbeidsdager.</p>
+      <p class="note">Regnet med 230 arbeidsdager og 7,5 timer per dag.</p>
     </div>
   </div>
 </section>
@@ -413,15 +414,15 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
 <section class="contact" id="kontakt" aria-label="Kontakt">
   <div class="card cc reveal">
     <div>
-      <h2>Har dere en tidstyv? <span class="soft">La oss ta en prat.</span></h2>
+      <h2>Har dere en tidstyv? La oss ta en prat.</h2>
       <p class="say">Fortell kort hva som tar for mye tid, så tar jeg kontakt og avtaler en første prat. Det er gratis og uforpliktende.</p>
-      <a class="inl mail js-mail" href="mailto:din@epost.no">din@epost.no</a>
+      <a class="mail js-mail" href="mailto:marcusla63@gmail.com">marcusla63@gmail.com</a>
     </div>
     <form class="form" id="form" aria-label="Kontaktskjema">
       <label for="f-navn">Navn og bedrift<input id="f-navn" name="navn" type="text" autocomplete="name" required></label>
       <label for="f-kontakt">E-post eller telefon<input id="f-kontakt" name="kontakt" type="text" required></label>
       <label for="f-behov">Hva tar for mye tid hos dere?<textarea id="f-behov" name="behov"></textarea></label>
-      <button class="pill" type="submit">Send forespørsel</button>
+      <button class="pill dark" type="submit">Send forespørsel</button>
       <p class="fine">Knappen åpner e-posten din med teksten ferdig utfylt.</p>
     </form>
   </div>
@@ -430,24 +431,23 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
 
 <footer class="foot">
   <svg class="word" viewBox="0 0 1000 140" role="img" aria-label="Marcus Larsen"><text x="0" y="112" font-size="150" textLength="1000" lengthAdjust="spacingAndGlyphs" letter-spacing="-6">Marcus Larsen</text></svg>
-  <div class="legal"><span>© 2026 Marcus Larsen · Harstad, Troms</span><span>Illustrasjonsfoto fra Unsplash: Paula Vermeulen, Todd Quackenbush, Aleksi Tappura, Ryan Jacques og Hugo Kerr</span><a href="#top">Til toppen ↑</a></div>
+  <div class="legal"><span>© 2026 Marcus Larsen · Harstad, Troms · <a class="js-mail" href="mailto:marcusla63@gmail.com">marcusla63@gmail.com</a></span><span>Illustrasjonsfoto fra Unsplash: Todd Quackenbush, Aleksi Tappura, Ryan Jacques og Hugo Kerr</span><a href="#top">Til toppen ↑</a></div>
 </footer>
 
 <script>
-/* Bytt ut med din egen e-postadresse – den brukes overalt på siden */
-const EPOST = 'din@epost.no';
-
+const EPOST = 'marcusla63@gmail.com';
 const root = document.documentElement;
 root.classList.add('js');
-document.querySelectorAll('.js-mail').forEach(a => { a.href = 'mailto:' + EPOST; a.textContent = EPOST; });
 const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* Bilder som ikke laster, skjules og flaten beholder fargen */
-(function () {
-  const img = document.getElementById('portrait');
-  img.addEventListener('error', () => img.classList.add('gone'));
-  document.querySelectorAll('.dcPic img').forEach(i => i.addEventListener('error', () => i.classList.add('gone')));
-})();
+/* Bilder og logoer som ikke laster */
+document.querySelectorAll('.dcPic img, .heroPic img').forEach(i => i.addEventListener('error', () => i.classList.add('gone')));
+document.querySelectorAll('.chip img').forEach(i => {
+  const skjul = () => i.remove();
+  if (i.complete && i.naturalWidth === 0) skjul(); else i.addEventListener('error', skjul);
+});
+/* Logobåndet dobles så det kan rulle sømløst */
+(function () { const c = document.getElementById('chips'); c.innerHTML += c.innerHTML; c.querySelectorAll('.chip img').forEach(i => i.addEventListener('error', () => i.remove())); })();
 
 /* Overskriften kommer frem ord for ord */
 (function () {
@@ -471,7 +471,7 @@ const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const d = document.getElementById('date'), t = document.getElementById('time');
   const fd = new Intl.DateTimeFormat('nb-NO', { timeZone: 'Europe/Oslo', weekday: 'long', day: 'numeric', month: 'long' });
   const ft = new Intl.DateTimeFormat('nb-NO', { timeZone: 'Europe/Oslo', hour: '2-digit', minute: '2-digit', second: '2-digit' });
-  const tick = () => { const now = new Date(); const s = fd.format(now); d.textContent = 'Harstad, ' + s; t.textContent = ft.format(now); };
+  const tick = () => { const now = new Date(); d.textContent = 'Harstad, ' + fd.format(now); t.textContent = ft.format(now); };
   tick(); setInterval(tick, 1000);
 })();
 
@@ -491,11 +491,14 @@ const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   go(0); restart();
 })();
 
-/* Avsnittet lyses opp ord for ord når du ruller */
+/* Avsnittet lyses opp ord for ord når du ruller (ord i .k blir gull) */
 (function () {
   const words = [];
   document.querySelectorAll('.lightup').forEach(p => {
-    p.innerHTML = p.textContent.split(' ').map(w => '<span class="sw">' + w + '</span>').join(' ');
+    p.innerHTML = [...p.childNodes].map(n => {
+      const key = n.nodeType === 1 && n.classList.contains('k');
+      return n.textContent.split(/(\s+)/).map(w => /^\s*$/.test(w) ? w : '<span class="sw' + (key ? ' key' : '') + '">' + w + '</span>').join('');
+    }).join('');
     words.push(...p.querySelectorAll('.sw'));
   });
   if (still) { words.forEach(w => w.classList.add('lit')); return; }
@@ -525,19 +528,6 @@ const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     });
   };
   addEventListener('scroll', update, { passive: true }); addEventListener('resize', update); update();
-})();
-
-/* Prøv selv: tema og farge (huskes i nettleseren hvis mulig) */
-(function () {
-  const get = k => { try { return localStorage.getItem(k); } catch (e) { return null; } };
-  const set = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
-  const theme = v => { root.dataset.theme = v; document.querySelectorAll('[data-theme-btn]').forEach(b => b.setAttribute('aria-pressed', b.dataset.themeBtn === v)); set('ml-theme', v); };
-  const accent = v => { root.dataset.accent = v; document.querySelectorAll('[data-accent-btn]').forEach(b => b.setAttribute('aria-pressed', b.dataset.accentBtn === v)); set('ml-accent', v); };
-  document.querySelectorAll('[data-theme-btn]').forEach(b => b.addEventListener('click', () => theme(b.dataset.themeBtn)));
-  document.querySelectorAll('[data-accent-btn]').forEach(b => b.addEventListener('click', () => accent(b.dataset.accentBtn)));
-  const t = get('ml-theme'), a = get('ml-accent');
-  if (t === 'light' || t === 'dark') theme(t);
-  if (['korall', 'isbla', 'sol'].includes(a)) accent(a);
 })();
 
 /* Kalkulator */
