@@ -53,11 +53,11 @@ ul{padding:0;list-style:none}
 
 /* ============ Toppseksjon: delt ============ */
 .hero{display:grid;grid-template-columns:3fr 2fr;min-height:min(100svh,820px)}
-.heroText{background:var(--card);display:grid;grid-template-rows:auto 1fr auto;padding:56px var(--margin) 48px}
-.topRow{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.heroText{background:var(--card);display:grid;grid-template-rows:1fr auto;padding:56px var(--margin) 48px}
 .brand{position:absolute;left:0;right:0;bottom:0;z-index:1;display:flex;align-items:center;gap:14px;padding:96px 32px 28px;background:linear-gradient(to top,rgba(12,13,16,.82),rgba(12,13,16,0));font-size:clamp(30px,3.2vw,46px);font-weight:500;letter-spacing:-.035em;line-height:1;color:var(--ink);text-decoration:none;animation:fade .8s .9s ease both}
 .brand::before{content:"";flex:none;width:.42em;height:.42em;border-radius:.1em;background:var(--gold)}
 .status{display:flex;align-items:center;gap:10px;font-size:var(--s-small)}
+.heroFoot .status{color:var(--ink)}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--moss);position:relative}
 .dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--moss);animation:pulse 2.4s ease-out infinite}
 @keyframes pulse{0%{transform:scale(1);opacity:.6}70%{transform:scale(3.2);opacity:0}100%{transform:scale(3.2);opacity:0}}
@@ -289,15 +289,14 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
 
 <header class="hero" id="top">
   <div class="heroText">
-    <div class="topRow"><p class="status"><span class="dot" aria-hidden="true"></span>Tar imot nye bedrifter i Harstad</p></div>
-    <div class="heroMid">
+        <div class="heroMid">
       <h1 id="h1">Mindre tastearbeid, <span class="soft">mer tid til det som betyr noe.</span></h1>
       <p>Jeg heter Marcus og hjelper små bedrifter å gjøre tunge, manuelle oppgaver enklere. Første prat er gratis.</p>
       <a class="pill" href="#tjenester">Se hva jeg kan hjelpe med</a>
     </div>
     <div class="heroFoot">
       <a class="pill gold" href="#kontakt">Ta kontakt <svg class="arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12L12 4M6 4h6v6" stroke="currentColor" stroke-width="1.8"/></svg></a>
-      <p>Gratis og uforpliktende</p>
+      <p class="status"><span class="dot" aria-hidden="true"></span>Tar imot nye bedrifter i Harstad</p>
     </div>
   </div>
   <figure class="heroPic">
