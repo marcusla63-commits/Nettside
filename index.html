@@ -139,7 +139,7 @@ ul{padding:0;list-style:none}
 .dcPic .art{position:absolute;inset:0;width:100%;height:100%;display:block}
 .tile{animation:bob 6s ease-in-out var(--d) infinite}
 @keyframes bob{50%{transform:translateY(-7px)}}
-.js .art .draw{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.4s cubic-bezier(.4,0,.2,1)}
+.js .art .draw{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 3s cubic-bezier(.45,0,.2,1) .2s}
 .js .dc.in .art .draw{stroke-dashoffset:0}
 .js .art .cell{opacity:0;transform:translateY(10px);transform-box:fill-box;transition:opacity .5s ease,transform .5s ease;transition-delay:var(--d)}
 .js .dc.in .art .cell{opacity:1;transform:none}
@@ -242,8 +242,6 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
 .js .reveal.in{opacity:1;transform:none}
 
 @media (prefers-reduced-motion:reduce){
-  .flow{height:auto}
-  .flowStick{position:relative}
   html{scroll-behavior:auto}
   .w,.heroMid p,.heroMid .pill,.heroPic img,.tile{animation:none;opacity:1;transform:none}
   .dot::after{animation:none}
@@ -257,7 +255,7 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
 }
 
 /* ============ Fra rot til rutine ============ */
-.flow{position:relative;height:250vh}
+.flow{position:relative;height:215vh}
 .flowStick{position:sticky;top:0;height:100svh;overflow:hidden}
 .flowHead{position:absolute;left:var(--margin);right:var(--margin);top:clamp(40px,9vh,96px);z-index:2;pointer-events:none}
 .flowHead h2{font-size:var(--s-head);font-weight:300;letter-spacing:-.04em;line-height:1.05}
@@ -269,6 +267,7 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
 .ft{position:absolute;left:0;top:0;border-radius:22%;will-change:transform}
 .ft.logo{background:#fff;display:grid;place-items:center}
 .ft.logo svg{width:60%;height:60%}
+@media (prefers-reduced-motion:reduce){.flow{height:auto}.flowStick{position:relative}}
 /* ============ Erfaring ============ */
 .proof{padding:120px var(--margin) 0}
 .proof h2{font-size:var(--s-head);font-weight:300;letter-spacing:-.04em;line-height:1.05}
@@ -283,7 +282,7 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
 .proofGrid .first .pill{align-self:flex-start;margin-top:8px}
 /* ============ Mobil ============ */
 @media (max-width:900px){
-  .flow{height:210vh}
+  .flow{height:185vh}
   .statement p{font-size:var(--s-lead)}
   .proof{padding-top:64px}
   .proofGrid{grid-template-columns:1fr;margin-top:28px}
@@ -684,7 +683,20 @@ regn();
 })();
 
 /* Seksjonene glir inn når de kommer til syne */
-const els = document.querySelectorAll('.reveal, .dc');
+const els = document.querySelectorAll('.reveal');
+/* Kunsten i tjenestekortene tegnes når bildet kommer godt inn på skjermen, og spilles av på nytt når du ruller opp igjen */
+(function () {
+  const pics = [...document.querySelectorAll('.dcPic')];
+  const check = () => {
+    const vh = innerHeight;
+    pics.forEach(pic => {
+      const r = pic.getBoundingClientRect(), card = pic.closest('.dc');
+      if (r.top < vh * .7 && r.bottom > vh * .15) card.classList.add('in');
+      else if (r.top > vh) card.classList.remove('in');
+    });
+  };
+  addEventListener('scroll', check, { passive: true }); addEventListener('resize', check); check();
+})();
 if ('IntersectionObserver' in window) {
   const io = new IntersectionObserver(entries => entries.forEach(en => {
     if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
