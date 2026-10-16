@@ -52,7 +52,7 @@ ul{padding:0;list-style:none}
 .pill:hover .arrow{transform:translate(3px,-3px)}
 
 /* ============ Toppseksjon: delt ============ */
-.hero{display:grid;grid-template-columns:1fr 1fr;min-height:100svh}
+.hero{display:grid;grid-template-columns:3fr 2fr;min-height:min(100svh,820px)}
 .heroText{background:var(--card);display:grid;grid-template-rows:auto 1fr auto;padding:56px var(--margin) 48px}
 .status{display:flex;align-items:center;gap:10px;font-size:var(--s-small)}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--moss);position:relative}
@@ -69,7 +69,7 @@ ul{padding:0;list-style:none}
 .heroFoot{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
 .heroFoot p{font-size:var(--s-small);color:var(--soft)}
 .heroPic{position:relative;overflow:hidden;background:var(--navy)}
-.heroPic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;animation:settle 1.6s cubic-bezier(.16,1,.3,1) both}
+.heroPic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%;animation:settle 1.6s cubic-bezier(.16,1,.3,1) both}
 @keyframes settle{from{transform:scale(1.08)}to{transform:none}}
 
 /* ============ Bento ============ */
@@ -109,11 +109,6 @@ ul{padding:0;list-style:none}
 .chip img{width:24px;height:24px;object-fit:contain}
 @keyframes roll{to{transform:translateX(-50%)}}
 
-/* ============ Rullebånd ============ */
-.ticker{overflow:hidden;padding:120px 0 0}
-.ticker .run{display:flex;gap:72px;width:max-content;animation:roll 44s linear infinite;color:var(--unlit);font-size:var(--s-lead);letter-spacing:-.02em;font-weight:500}
-.ticker:hover .run{animation-play-state:paused}
-
 /* ============ Avsnitt som lyses opp ============ */
 .statement{background:var(--card);margin-top:120px;padding:160px var(--margin)}
 .statement p{font-size:var(--s-state);line-height:1.2;letter-spacing:-.025em;max-width:40ch}
@@ -136,8 +131,9 @@ ul{padding:0;list-style:none}
 .dcText ul{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
 .dcText li{font-size:13px;padding:8px 12px;border-radius:8px;background:var(--card-2)}
 .dcText .pill{align-self:flex-start;margin-top:32px;min-height:44px;padding:0 22px}
-.dcPic{position:relative;background:var(--navy-2)}
-.dcPic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dcPic{position:relative;background:var(--navy-2);display:flex;align-items:center;justify-content:center;padding:40px}
+.dcPic .ill{width:100%;max-width:520px;height:auto;display:block}
+.dc:nth-child(2) .dcPic{background:#2c3d63}
 .dcShade{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none;border-radius:var(--radius)}
 
 /* ============ Slik jobber vi ============ */
@@ -153,28 +149,29 @@ ul{padding:0;list-style:none}
 .steps p{color:var(--soft);margin-top:10px;max-width:34ch}
 
 /* ============ Kalkulator ============ */
-.calc{padding:160px var(--margin) 0}
-.calcCard{background:var(--navy);display:grid;grid-template-columns:1fr 1fr;gap:48px;padding:48px}
-.calcCard h2{font-size:var(--s-head);font-weight:300;letter-spacing:-.04em;line-height:1.05}
-.calcCard .intro{margin-top:16px;color:#c3cbe0;max-width:40ch}
-.ctrl{margin-top:28px}
+.calc{padding:120px var(--margin) 0}
+.calcCard{background:var(--navy);display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:40px;padding:32px 36px;align-items:center}
+.calcCard h2{font-size:var(--s-state);font-weight:400;letter-spacing:-.03em;line-height:1.1}
+.calcCard .intro{margin-top:10px;color:#c3cbe0;max-width:36ch;font-size:var(--s-small)}
+.sliders .ctrl:first-child{margin-top:0}
+.ctrl{margin-top:16px}
 .ctrl label{display:flex;justify-content:space-between;font-size:var(--s-small);color:#c3cbe0;margin-bottom:2px}
 .ctrl label b{color:var(--ink);font-weight:500}
 .ctrl input{width:100%;height:40px;margin:0;accent-color:var(--gold);cursor:pointer;background:transparent}
 .result{display:flex;flex-direction:column;justify-content:flex-end}
-.result .num{font-size:clamp(88px,10vw,160px);font-weight:300;letter-spacing:-.05em;line-height:.85;color:var(--gold)}
-.result .unit{font-size:var(--s-lead);margin-top:14px;max-width:28ch;line-height:1.3}
-.result .note{font-size:var(--s-small);color:#c3cbe0;margin-top:16px}
+.result .num{font-size:clamp(64px,6vw,104px);font-weight:300;letter-spacing:-.05em;line-height:.85;color:var(--gold)}
+.result .unit{margin-top:10px;max-width:28ch;line-height:1.35}
+.result .note{font-size:13px;color:#c3cbe0;margin-top:8px}
 
 /* ============ Om meg ============ */
-.about{padding:160px var(--margin) 0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px}
-.aboutMain{grid-column:1 / 8;display:flex;flex-direction:column;justify-content:space-between;min-height:352px}
+.about{padding:160px var(--margin) 0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;align-items:start}
+.aboutMain{grid-column:1 / 8;display:flex;flex-direction:column;gap:20px}
 .about h2{font-size:var(--s-head);font-weight:300;letter-spacing:-.04em}
-.about .say{font-size:var(--s-lead);line-height:1.3;max-width:40ch;margin-top:32px}
+.about .say{font-size:var(--s-lead);line-height:1.35;max-width:44ch}
 .facts{grid-column:8 / 13;display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.facts .card{display:flex;flex-direction:column;justify-content:flex-end;min-height:170px}
+.facts .card{padding:18px 20px}
 .facts dt{color:var(--gold);font-size:var(--s-small)}
-.facts dd{margin-top:6px}
+.facts dd{margin-top:4px;font-size:15px;line-height:1.4}
 
 /* ============ Spørsmål ============ */
 .faq{padding:160px var(--margin) 0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px}
@@ -217,7 +214,7 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .w,.heroMid p,.heroMid .pill,.heroPic img{animation:none;opacity:1;transform:none}
-  .dot::after,.chips,.ticker .run{animation:none}
+  .dot::after,.chips{animation:none}
   .js .reveal{opacity:1;transform:none;transition:none}
   .statement .sw{color:var(--ink);transition:none}
   .slide{transition:none}
@@ -228,7 +225,7 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
 @media (max-width:900px){
   :root{--s-head:clamp(34px,9vw,44px);--s-state:24px;--s-lead:20px;--s-body:17px}
   .hero{grid-template-columns:1fr;min-height:0}
-  .heroPic{order:-1;height:62svh}
+  .heroPic{order:-1;height:42svh;min-height:300px}
   .heroText{padding:28px var(--margin) 32px;gap:40px;display:flex;flex-direction:column}
   .status{order:3}
   .bento{grid-template-columns:1fr;padding-top:12px}
@@ -238,16 +235,15 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
   .dc{grid-template-columns:1fr;min-height:0;position:relative;top:auto;margin-bottom:12px}
   .dcText{padding:28px 24px}
   .dcText h3{margin-top:28px}
-  .dcPic{height:36vh;order:-1}
+  .dcPic{order:-1;padding:24px}
   .how{padding-top:72px}
   .steps{grid-template-columns:1fr}
   .steps .card{min-height:200px}
   .calc{padding-top:96px}
-  .calcCard{grid-template-columns:1fr;padding:28px 24px;gap:36px}
-  .result{order:-1}
+  .calc{padding-top:72px}
+  .calcCard{grid-template-columns:1fr;padding:24px;gap:24px}
   .about{padding-top:96px;grid-template-columns:1fr}
   .aboutMain,.facts{grid-column:1 / -1}
-  .aboutMain{min-height:0;gap:24px}
   .faq{padding-top:96px;grid-template-columns:1fr}
   .faq h2,.qs{grid-column:1 / -1}
   .faq h2{margin-bottom:24px}
@@ -323,40 +319,35 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
   </div>
 </section>
 
-<div class="ticker" aria-hidden="true"><div class="run">
-  <span>Fakturaflyt</span><span>Excel-oversikt</span><span>Maler og skjemaer</span><span>Fildeling</span><span>Trygg e-post</span><span>Rapporter</span><span>KI i hverdagen</span>
-  <span>Fakturaflyt</span><span>Excel-oversikt</span><span>Maler og skjemaer</span><span>Fildeling</span><span>Trygg e-post</span><span>Rapporter</span><span>KI i hverdagen</span>
-</div></div>
-
 <section class="statement" aria-label="Slik tenker jeg">
   <p class="lightup">De fleste bedrifter trenger ikke flere systemer. De trenger at de de har, <span class="k">fungerer sammen,</span> og at folk vet hvordan de brukes.</p>
-  <p class="lightup">Jeg har sett arbeidsdagen fra både kontorpulten og verkstedgulvet. Derfor starter jeg alltid med hvordan dere <span class="k">jobber i dag,</span> ikke med det nyeste verktøyet.</p>
+  <p class="lightup">God hjelp starter med å forstå hverdagen deres. Derfor ser jeg først på hvordan dere <span class="k">jobber i dag,</span> ikke på det nyeste verktøyet.</p>
 </section>
 
 <section class="svc" id="tjenester" aria-label="Tjenester">
   <div class="svcHead reveal">
     <h2>Tjenester</h2>
-    <p>Alt er gratis i oppstartsfasen. Velg det som passer, eller la meg se på helheten.</p>
+    <p>Alt er gratis. Velg det som passer, eller la meg se på helheten.</p>
   </div>
   <div class="deck" id="deck">
     <article class="dc">
       <div class="dcText"><p class="name">Tunge rutiner</p><h3>Vi finner tidstyvene og gjør dem enklere.</h3><ul><li>Kartlegging</li><li>Maler</li><li>Automatisering</li></ul><a class="pill" href="#kontakt">Spør om dette</a></div>
-      <div class="dcPic"><img src="https://picsum.photos/id/491/1200/1200?grayscale" width="1200" height="1200" alt="Øks, hammer, tang og arbeidshansker lagt fram på et mørkt treunderlag." loading="lazy"></div>
+      <div class="dcPic"><svg class="ill" data-ui viewBox="0 0 560 420" role="img" aria-label="Illustrasjon: en sjekkliste der to manuelle oppgaver er strøket ut og merket som automatiske."><rect x="0" y="0" width="560" height="420" rx="14" fill="#16181d"/><rect x="0" y="0" width="560" height="52" rx="14" fill="#20232a"/><rect x="0" y="38" width="560" height="14" fill="#20232a"/><circle cx="26" cy="26" r="6" fill="#4a5163"/><circle cx="46" cy="26" r="6" fill="#4a5163"/><circle cx="66" cy="26" r="6" fill="#4a5163"/><text x="92" y="31" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" fill="#b6b4ae">Månedlige rutiner</text><rect x="28" y="72" width="504" height="58" rx="10" fill="#20232a"/><rect x="48" y="90" width="20" height="20" rx="5" fill="#e8c35a"/><path d="M53 100 l5 5 l9 -10" stroke="#191407" stroke-width="2.6" fill="none"/><text x="84" y="106" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="17" fill="#7e7c77">Taste inn fakturaer for hånd</text><rect x="84" y="100" width="222" height="2" fill="#7e7c77"/><rect x="408" y="87" width="104" height="26" rx="13" fill="#26365a"/><text x="460.0" y="105" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="13" fill="#c3cbe0" text-anchor="middle">Automatisk</text><rect x="28" y="144" width="504" height="58" rx="10" fill="#20232a"/><rect x="48" y="162" width="20" height="20" rx="5" fill="#e8c35a"/><path d="M53 172 l5 5 l9 -10" stroke="#191407" stroke-width="2.6" fill="none"/><text x="84" y="178" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="17" fill="#7e7c77">Kopiere tall til månedsrapport</text><rect x="84" y="172" width="238" height="2" fill="#7e7c77"/><rect x="408" y="159" width="104" height="26" rx="13" fill="#26365a"/><text x="460.0" y="177" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="13" fill="#c3cbe0" text-anchor="middle">Automatisk</text><rect x="28" y="216" width="504" height="58" rx="10" fill="#20232a"/><rect x="48" y="234" width="20" height="20" rx="5" fill="#e8c35a"/><path d="M53 244 l5 5 l9 -10" stroke="#191407" stroke-width="2.6" fill="none"/><text x="84" y="250" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="17" fill="#f1f3f5">Sende påminnelser til kunder</text><rect x="464" y="231" width="48" height="26" rx="13" fill="#2a2e37"/><text x="488.0" y="249" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="13" fill="#b6b4ae" text-anchor="middle">Mal</text><rect x="28" y="288" width="504" height="58" rx="10" fill="#20232a"/><rect x="48" y="306" width="20" height="20" rx="5" fill="#e8c35a"/><path d="M53 316 l5 5 l9 -10" stroke="#191407" stroke-width="2.6" fill="none"/><text x="84" y="322" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="17" fill="#f1f3f5">Arkivere bilag</text><rect x="400" y="303" width="112" height="26" rx="13" fill="#2a2e37"/><text x="456.0" y="321" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="13" fill="#b6b4ae" text-anchor="middle">Fast rutine</text><text x="28" y="396" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="14" fill="#9cc28a">2 av 4 oppgaver gjøres nå automatisk</text></svg></div>
       <span class="dcShade" aria-hidden="true"></span>
     </article>
     <article class="dc">
       <div class="dcText"><p class="name">Regneark og tall</p><h3>Ryddigere Excel og bedre oversikt over tallene.</h3><ul><li>Excel</li><li>Rapporter</li><li>Økonomioversikt</li></ul><a class="pill" href="#kontakt">Spør om dette</a></div>
-      <div class="dcPic"><img src="https://picsum.photos/id/172/1200/1200?grayscale" width="1200" height="1200" alt="En steinmolo som strekker seg ut i stille vann og tett, grå tåke." loading="lazy"></div>
+      <div class="dcPic"><svg class="ill" data-ui viewBox="0 0 560 420" role="img" aria-label="Illustrasjon: et ryddig regneark med inntekt, kostnad og resultat per måned og en sum nederst."><rect x="0" y="0" width="560" height="420" rx="14" fill="#16181d"/><rect x="0" y="0" width="560" height="52" rx="14" fill="#20232a"/><rect x="0" y="38" width="560" height="14" fill="#20232a"/><circle cx="26" cy="26" r="6" fill="#4a5163"/><circle cx="46" cy="26" r="6" fill="#4a5163"/><circle cx="66" cy="26" r="6" fill="#4a5163"/><text x="92" y="31" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" fill="#b6b4ae">Oversikt 2026.xlsx</text><rect x="28" y="72" width="504" height="40" rx="8" fill="#26365a"/><text x="42" y="98" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="14" font-weight="500" fill="#dfe5ea" text-anchor="start">Måned</text><text x="288" y="98" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="14" font-weight="500" fill="#dfe5ea" text-anchor="end">Inntekt</text><text x="408" y="98" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="14" font-weight="500" fill="#dfe5ea" text-anchor="end">Kostnad</text><text x="528" y="98" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="14" font-weight="500" fill="#dfe5ea" text-anchor="end">Resultat</text><text x="42" y="141" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" fill="#f1f3f5" text-anchor="start" font-variant-numeric="tabular-nums">Januar</text><text x="288" y="141" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" fill="#f1f3f5" text-anchor="end" font-variant-numeric="tabular-nums">182 400</text><text x="408" y="141" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" fill="#f1f3f5" text-anchor="end" font-variant-numeric="tabular-nums">141 900</text><text x="528" y="141" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" fill="#f1f3f5" text-anchor="end" font-variant-numeric="tabular-nums">40 500</text><rect x="28" y="158" width="504" height="46" fill="#1b1e24"/><text x="42" y="187" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" fill="#f1f3f5" text-anchor="start" font-variant-numeric="tabular-nums">Februar</text><text x="288" y="187" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" fill="#f1f3f5" text-anchor="end" font-variant-numeric="tabular-nums">171 250</text><text x="408" y="187" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" fill="#f1f3f5" text-anchor="end" font-variant-numeric="tabular-nums">138 600</text><text x="528" y="187" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" fill="#f1f3f5" text-anchor="end" font-variant-numeric="tabular-nums">32 650</text><text x="42" y="233" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" fill="#f1f3f5" text-anchor="start" font-variant-numeric="tabular-nums">Mars</text><text x="288" y="233" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" fill="#f1f3f5" text-anchor="end" font-variant-numeric="tabular-nums">195 800</text><text x="408" y="233" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" fill="#f1f3f5" text-anchor="end" font-variant-numeric="tabular-nums">149 300</text><text x="528" y="233" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" fill="#f1f3f5" text-anchor="end" font-variant-numeric="tabular-nums">46 500</text><rect x="28" y="250" width="504" height="46" fill="#1b1e24"/><text x="42" y="279" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" fill="#f1f3f5" text-anchor="start" font-variant-numeric="tabular-nums">April</text><text x="288" y="279" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" fill="#f1f3f5" text-anchor="end" font-variant-numeric="tabular-nums">188 900</text><text x="408" y="279" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" fill="#f1f3f5" text-anchor="end" font-variant-numeric="tabular-nums">144 100</text><text x="528" y="279" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" fill="#f1f3f5" text-anchor="end" font-variant-numeric="tabular-nums">44 800</text><rect x="28" y="306" width="504" height="48" rx="8" fill="#e8c35a"/><text x="42" y="336" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" font-weight="500" fill="#191407" text-anchor="start">Sum</text><text x="288" y="336" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" font-weight="500" fill="#191407" text-anchor="end">738 350</text><text x="408" y="336" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" font-weight="500" fill="#191407" text-anchor="end">573 900</text><text x="528" y="336" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" font-weight="500" fill="#191407" text-anchor="end">164 450</text></svg></div>
       <span class="dcShade" aria-hidden="true"></span>
     </article>
     <article class="dc">
       <div class="dcText"><p class="name">Verktøyene dere har</p><h3>Mer ut av programmene dere allerede bruker.</h3><ul><li>Office</li><li>Teams</li><li>Fildeling</li></ul><a class="pill" href="#kontakt">Spør om dette</a></div>
-      <div class="dcPic"><img src="https://picsum.photos/id/130/1200/1200?grayscale" width="1200" height="1200" alt="En måke glir over et grått hav under lyse skyer." loading="lazy"></div>
+      <div class="dcPic"><svg class="ill" data-ui viewBox="0 0 560 420" role="img" aria-label="Illustrasjon: en ryddig mappestruktur med felles mapper for økonomi, kunder og maler."><rect x="0" y="0" width="560" height="420" rx="14" fill="#16181d"/><rect x="0" y="0" width="560" height="52" rx="14" fill="#20232a"/><rect x="0" y="38" width="560" height="14" fill="#20232a"/><circle cx="26" cy="26" r="6" fill="#4a5163"/><circle cx="46" cy="26" r="6" fill="#4a5163"/><circle cx="66" cy="26" r="6" fill="#4a5163"/><text x="92" y="31" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" fill="#b6b4ae">Delte filer</text><path d="M40 82 h10 l4 4 h14 v16 h-28 z" fill="#e8c35a"/><text x="80" y="97" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="16" fill="#f1f3f5">Felles</text><path d="M54 104 v26 h14" stroke="#3a3f4b" stroke-width="2" fill="none"/><path d="M74 122 h10 l4 4 h14 v16 h-28 z" fill="#e8c35a"/><text x="114" y="137" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="16" fill="#f1f3f5">Økonomi</text><path d="M88 144 v26 h14" stroke="#3a3f4b" stroke-width="2" fill="none"/><path d="M108 162 h10 l4 4 h14 v16 h-28 z" fill="#e8c35a"/><text x="148" y="177" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="16" fill="#f1f3f5">Fakturaer 2026</text><path d="M88 184 v26 h14" stroke="#3a3f4b" stroke-width="2" fill="none"/><path d="M108 202 h10 l4 4 h14 v16 h-28 z" fill="#e8c35a"/><text x="148" y="217" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="16" fill="#f1f3f5">Rapporter</text><path d="M54 224 v26 h14" stroke="#3a3f4b" stroke-width="2" fill="none"/><path d="M74 242 h10 l4 4 h14 v16 h-28 z" fill="#e8c35a"/><text x="114" y="257" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="16" fill="#f1f3f5">Kunder</text><path d="M54 264 v26 h14" stroke="#3a3f4b" stroke-width="2" fill="none"/><path d="M74 282 h10 l4 4 h14 v16 h-28 z" fill="#e8c35a"/><text x="114" y="297" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="16" fill="#f1f3f5">Maler</text><path d="M88 304 v26 h14" stroke="#3a3f4b" stroke-width="2" fill="none"/><path d="M110 318 h14 l6 6 v18 h-20 z" fill="#4a5163"/><text x="148" y="337" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="16" fill="#b6b4ae">Tilbud.docx</text><path d="M88 344 v26 h14" stroke="#3a3f4b" stroke-width="2" fill="none"/><path d="M110 358 h14 l6 6 v18 h-20 z" fill="#4a5163"/><text x="148" y="377" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="16" fill="#b6b4ae">Timeliste.xlsx</text><rect x="360" y="86" width="172" height="34" rx="17" fill="#26365a"/><text x="446" y="108" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="13" fill="#c3cbe0" text-anchor="middle">Delt med alle</text></svg></div>
       <span class="dcShade" aria-hidden="true"></span>
     </article>
     <article class="dc">
       <div class="dcText"><p class="name">Små kurs og KI</p><h3>Korte kurs, og KI der det faktisk hjelper.</h3><ul><li>Ett tema om gangen</li><li>Hos dere</li><li>På Teams</li><li>Trygg bruk</li></ul><a class="pill" href="#kontakt">Spør om dette</a></div>
-      <div class="dcPic"><img src="https://picsum.photos/id/552/1200/1200?grayscale" width="1200" height="1200" alt="En liten seilbåt på rolig sjø med åser i det fjerne." loading="lazy"></div>
+      <div class="dcPic"><svg class="ill" data-ui viewBox="0 0 560 420" role="img" aria-label="Illustrasjon: et chatvindu der en KI-assistent oppsummerer et møte i tre punkter."><rect x="0" y="0" width="560" height="420" rx="14" fill="#16181d"/><rect x="0" y="0" width="560" height="52" rx="14" fill="#20232a"/><rect x="0" y="38" width="560" height="14" fill="#20232a"/><circle cx="26" cy="26" r="6" fill="#4a5163"/><circle cx="46" cy="26" r="6" fill="#4a5163"/><circle cx="66" cy="26" r="6" fill="#4a5163"/><text x="92" y="31" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" fill="#b6b4ae">KI-assistent</text><rect x="196" y="78" width="336" height="64" rx="16" fill="#26365a"/><text x="216" y="105" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" fill="#f1f3f5">Kan du oppsummere møtet</text><text x="216" y="127" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" fill="#f1f3f5">i tre korte punkter?</text><rect x="28" y="162" width="380" height="170" rx="16" fill="#20232a"/><circle cx="54" cy="195" r="4" fill="#e8c35a"/><text x="70" y="200" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" fill="#f1f3f5">Nytt fakturaoppsett fra 1. desember</text><circle cx="54" cy="235" r="4" fill="#e8c35a"/><text x="70" y="240" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" fill="#f1f3f5">Kari tar ansvar for maler</text><circle cx="54" cy="275" r="4" fill="#e8c35a"/><text x="70" y="280" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="15" fill="#f1f3f5">Ny gjennomgang om to uker</text><text x="48" y="312" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="13" fill="#7e7c77">Sjekk alltid svaret før du sender det videre</text><rect x="28" y="352" width="504" height="44" rx="22" fill="#20232a"/><text x="52" y="379" font-family="Geist,'Segoe UI',Arial,sans-serif" font-size="14" fill="#7e7c77">Skriv en melding …</text><circle cx="508" cy="374" r="14" fill="#e8c35a"/><path d="M502 374 h12 M509 369 l5 5 l-5 5" stroke="#191407" stroke-width="2" fill="none"/></svg></div>
       <span class="dcShade" aria-hidden="true"></span>
     </article>
   </div>
@@ -375,7 +366,9 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
   <div class="card calcCard reveal">
     <div>
       <h2>Regn ut tidstyven</h2>
-      <p class="intro">Tenk på én oppgave dere gjør for hånd hver dag. Dra i spakene og se hvor mye tid den spiser i løpet av et år.</p>
+      <p class="intro">Tenk på én oppgave dere gjør for hånd hver dag, og se hvor mye tid den spiser i løpet av et år.</p>
+    </div>
+    <div class="sliders">
       <div class="ctrl"><label for="min"><span>Minutter per dag</span><b id="minOut">30 min</b></label><input id="min" type="range" min="5" max="120" step="5" value="30"></div>
       <div class="ctrl"><label for="ppl"><span>Ansatte som gjør den</span><b id="pplOut">3</b></label><input id="ppl" type="range" min="1" max="20" step="1" value="3"></div>
     </div>
@@ -390,7 +383,7 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
 <section class="about" id="om" aria-label="Om meg">
   <div class="card aboutMain reveal">
     <h2>Om meg</h2>
-    <p class="say">Jeg er regnskapsrådgiver fra Harstad med fagbrev som vedlikeholdsoperatør. Prosjektet er nytt, og jeg tar ikke betalt ennå.</p>
+    <p class="say">Teknologi har alltid vært en stor del av livet mitt. Jeg tester gjerne det nyeste først, og er ofte den familie og venner ringer når noe ikke virker. Nå vil jeg bruke det til å hjelpe bedrifter her i Harstad.</p>
   </div>
   <dl class="facts">
     <div class="card reveal"><dt>Jobber som</dt><dd>Regnskapsrådgiver i SpareBank 1 Regnskapshuset Nord-Norge</dd></div>
@@ -403,7 +396,7 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
 <section class="faq" aria-label="Spørsmål og svar">
   <h2 class="reveal">Det folk lurer på</h2>
   <div class="qs">
-    <details class="reveal"><summary>Er det virkelig gratis?</summary><p>Ja. Prosjektet er i oppstart, og jeg tar ikke betalt nå. Blir det en betalt tjeneste senere, får dere vite det i god tid.</p></details>
+    <details class="reveal"><summary>Er det gratis?</summary><p>Ja. Det koster ingenting å ta en prat, få et forslag eller få hjelp til å komme i gang.</p></details>
     <details class="reveal"><summary>Må vi være flinke med data?</summary><p>Nei. Vi starter der dere er. Mange av de beste forbedringene handler ikke om ny teknologi, men om å rydde i rutinene dere allerede har.</p></details>
     <details class="reveal"><summary>Hva slags bedrifter hjelper du?</summary><p>Små og mellomstore bedrifter i Harstad og omegn: butikker, håndverkere, kontorer, lag og foreninger.</p></details>
     <details class="reveal"><summary>Kommer du til oss, eller tar vi det på nett?</summary><p>Begge deler går fint. Det meste skjer ansikt til ansikt i Harstad og omegn, men vi kan også ta praten på Teams.</p></details>
@@ -431,7 +424,7 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
 
 <footer class="foot">
   <svg class="word" viewBox="0 0 1000 140" role="img" aria-label="Marcus Larsen"><text x="0" y="112" font-size="150" textLength="1000" lengthAdjust="spacingAndGlyphs" letter-spacing="-6">Marcus Larsen</text></svg>
-  <div class="legal"><span>© 2026 Marcus Larsen · Harstad, Troms · <a class="js-mail" href="mailto:marcusla63@gmail.com">marcusla63@gmail.com</a></span><span>Illustrasjonsfoto fra Unsplash: Todd Quackenbush, Aleksi Tappura, Ryan Jacques og Hugo Kerr</span><a href="#top">Til toppen ↑</a></div>
+  <div class="legal"><span>© 2026 Marcus Larsen · Harstad, Troms · <a class="js-mail" href="mailto:marcusla63@gmail.com">marcusla63@gmail.com</a></span><span>Laget i Harstad</span><a href="#top">Til toppen ↑</a></div>
 </footer>
 
 <script>
@@ -441,7 +434,7 @@ root.classList.add('js');
 const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* Bilder og logoer som ikke laster */
-document.querySelectorAll('.dcPic img, .heroPic img').forEach(i => i.addEventListener('error', () => i.classList.add('gone')));
+document.querySelectorAll('.heroPic img').forEach(i => i.addEventListener('error', () => i.classList.add('gone')));
 document.querySelectorAll('.chip img').forEach(i => {
   const skjul = () => i.remove();
   if (i.complete && i.naturalWidth === 0) skjul(); else i.addEventListener('error', skjul);
