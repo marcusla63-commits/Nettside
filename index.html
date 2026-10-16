@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Marcus Larsen – digital hjelp for bedrifter i Harstad</title>
-<meta name="description" content="Marcus Larsen hjelper små bedrifter i Harstad med enklere rutiner, ryddigere regneark, bedre bruk av verktøyene de har, små kurs og KI der det passer. Første prat er gratis.">
+<title>Larsen Digital – digital hjelp for bedrifter i Harstad</title>
+<meta name="description" content="Larsen Digital: Marcus Larsen hjelper små bedrifter i Harstad med enklere rutiner, ryddigere regneark, bedre bruk av verktøyene de har, små kurs og KI der det passer. Første prat er gratis.">
 <meta name="theme-color" content="#0c0d10">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,6 +54,9 @@ ul{padding:0;list-style:none}
 /* ============ Toppseksjon: delt ============ */
 .hero{display:grid;grid-template-columns:3fr 2fr;min-height:min(100svh,820px)}
 .heroText{background:var(--card);display:grid;grid-template-rows:auto 1fr auto;padding:56px var(--margin) 48px}
+.topRow{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.brand{font-size:var(--s-body);font-weight:500;letter-spacing:-.02em;text-decoration:none}
+.brand::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--gold);margin-right:10px;vertical-align:1px}
 .status{display:flex;align-items:center;gap:10px;font-size:var(--s-small)}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--moss);position:relative}
 .dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--moss);animation:pulse 2.4s ease-out infinite}
@@ -157,7 +160,7 @@ ul{padding:0;list-style:none}
 
 /* ============ Kalkulator ============ */
 .calc{padding:120px var(--margin) 0}
-.calcCard{background:var(--navy);display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:40px;padding:32px 36px;align-items:center}
+.calcCard{background:var(--navy);display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:40px;padding:32px 36px;align-items:center}
 .calcCard h2{font-size:var(--s-state);font-weight:400;letter-spacing:-.03em;line-height:1.1}
 .calcCard .intro{margin-top:10px;color:#c3cbe0;max-width:36ch;font-size:var(--s-small)}
 .sliders .ctrl:first-child{margin-top:0}
@@ -166,9 +169,27 @@ ul{padding:0;list-style:none}
 .ctrl label b{color:var(--ink);font-weight:500}
 .ctrl input{width:100%;height:40px;margin:0;accent-color:var(--gold);cursor:pointer;background:transparent}
 .result{display:flex;flex-direction:column;justify-content:flex-end}
-.result .num{font-size:clamp(64px,6vw,104px);font-weight:300;letter-spacing:-.05em;line-height:.85;color:var(--gold)}
-.result .unit{margin-top:10px;max-width:28ch;line-height:1.35}
-.result .note{font-size:13px;color:#c3cbe0;margin-top:8px}
+.result .num{font-size:clamp(56px,5vw,88px);font-weight:300;letter-spacing:-.05em;line-height:.9;color:var(--gold)}
+.result .num .u{font-size:.32em;letter-spacing:-.01em;color:var(--ink)}
+.result .kr{margin-top:8px;font-variant-numeric:tabular-nums;max-width:30ch}
+.result .kr span{color:var(--gold);font-weight:500}
+.bar{display:flex;height:10px;border-radius:999px;overflow:hidden;background:var(--navy-2);margin-top:16px}
+.bar span{display:block;height:100%;transition:width .4s cubic-bezier(.16,1,.3,1)}
+.bar .keep{background:#5b6f9a}.bar .save{background:var(--gold)}
+.result .note{font-size:13px;color:#c3cbe0;margin-top:10px}
+.ctrl2{display:flex;gap:16px;align-items:flex-end;flex-wrap:wrap;margin-top:18px}
+.seg{border:0;padding:0;margin:0;min-width:0}
+.seg legend{font-size:var(--s-small);color:#c3cbe0;padding:0;margin-bottom:6px}
+.seg label{display:inline-flex;align-items:center;justify-content:center;min-width:58px;min-height:40px;padding:0 12px;border-radius:999px;background:var(--navy-2);font-size:14px;cursor:pointer;margin-right:4px;transition:background-color .18s ease,color .18s ease}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label:has(input:checked){background:var(--gold);color:var(--on-gold);font-weight:500}
+.seg label:has(input:focus-visible){outline:2px solid var(--gold);outline-offset:2px}
+.cost{display:flex;flex-direction:column;gap:6px;font-size:var(--s-small);color:#c3cbe0}
+.cost .box{display:flex;align-items:center;gap:8px;background:var(--navy-2);border-radius:999px;padding:0 14px;min-height:40px;color:var(--ink)}
+.cost input{width:64px;background:none;border:0;color:var(--ink);font:500 15px var(--font);text-align:right;-moz-appearance:textfield}
+.cost input::-webkit-outer-spin-button,.cost input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.cost input:focus{outline:none}
+.cost .box:focus-within{outline:2px solid var(--gold);outline-offset:2px}
 
 /* ============ Om meg ============ */
 .about{padding:160px var(--margin) 0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;align-items:start}
@@ -237,7 +258,7 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
   .hero{grid-template-columns:1fr;min-height:0}
   .heroPic{order:-1;height:42svh;min-height:300px}
   .heroText{padding:28px var(--margin) 32px;gap:40px;display:flex;flex-direction:column}
-  .status{order:3}
+  .topRow{order:3}
   .bento{grid-template-columns:1fr;padding-top:12px}
   .tools{grid-template-columns:1fr;gap:20px}
   .statement{margin-top:72px;padding:96px var(--margin)}
@@ -268,7 +289,7 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
 
 <header class="hero" id="top">
   <div class="heroText">
-    <p class="status"><span class="dot" aria-hidden="true"></span>Tar imot nye bedrifter i Harstad</p>
+    <div class="topRow"><a class="brand" href="#top">Larsen Digital</a><p class="status"><span class="dot" aria-hidden="true"></span>Tar imot nye bedrifter i Harstad</p></div>
     <div class="heroMid">
       <h1 id="h1">Mindre tastearbeid, <span class="soft">mer tid til det som betyr noe.</span></h1>
       <p>Jeg heter Marcus og hjelper små bedrifter å gjøre tunge, manuelle oppgaver enklere. Første prat er gratis.</p>
@@ -375,16 +396,23 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
   <div class="card calcCard reveal">
     <div>
       <h2>Regn ut tidstyven</h2>
-      <p class="intro">Tenk på én oppgave dere gjør for hånd hver dag, og se hvor mye tid den spiser i løpet av et år.</p>
+      <p class="intro">Tenk på én oppgave dere gjør for hånd hver dag. Se hvor mye tid og penger dere kan få tilbake ved å gjøre den enklere.</p>
     </div>
     <div class="sliders">
       <div class="ctrl"><label for="min"><span>Minutter per dag</span><b id="minOut">30 min</b></label><input id="min" type="range" min="5" max="120" step="5" value="30"></div>
       <div class="ctrl"><label for="ppl"><span>Ansatte som gjør den</span><b id="pplOut">3</b></label><input id="ppl" type="range" min="1" max="20" step="1" value="3"></div>
+      <div class="ctrl2">
+        <fieldset class="seg"><legend>Kan kuttes med</legend>
+          <label><input type="radio" name="cut" value="25">25 %</label><label><input type="radio" name="cut" value="50" checked>50 %</label><label><input type="radio" name="cut" value="75">75 %</label>
+        </fieldset>
+        <label class="cost" for="cost"><span>Timekost</span><span class="box"><input id="cost" type="number" inputmode="numeric" min="0" step="50" value="500"><span>kr</span></span></label>
+      </div>
     </div>
     <div class="result" aria-live="polite">
-      <p class="num" id="hours">345</p>
-      <p class="unit">timer i året, eller omtrent <span id="days">46</span> hele arbeidsdager.</p>
-      <p class="note">Regnet med 230 arbeidsdager og 7,5 timer per dag.</p>
+      <p class="num"><span id="saved">173</span> <span class="u">timer</span></p>
+      <p class="kr">får dere tilbake, verdt ≈ <span id="kr">86 500</span> kr i året</p>
+      <div class="bar" aria-hidden="true"><span class="keep" id="keepBar"></span><span class="save" id="saveBar"></span></div>
+      <p class="note">I dag går <span id="hours">345</span> timer med til oppgaven. Regnet med 230 arbeidsdager i året.</p>
     </div>
   </div>
 </section>
@@ -432,8 +460,8 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
 </main>
 
 <footer class="foot">
-  <svg class="word" viewBox="0 0 1000 140" role="img" aria-label="Marcus Larsen"><text x="0" y="112" font-size="150" textLength="1000" lengthAdjust="spacingAndGlyphs" letter-spacing="-6">Marcus Larsen</text></svg>
-  <div class="legal"><span>© 2026 Marcus Larsen · Harstad, Troms · <a class="js-mail" href="mailto:marcusla63@gmail.com">marcusla63@gmail.com</a></span><span>Laget i Harstad</span><a href="#top">Til toppen ↑</a></div>
+  <svg class="word" viewBox="0 0 1000 140" role="img" aria-label="Larsen Digital"><text x="0" y="112" font-size="150" textLength="1000" lengthAdjust="spacingAndGlyphs" letter-spacing="-6">Larsen Digital</text></svg>
+  <div class="legal"><span>© 2026 Larsen Digital ved Marcus Larsen · Harstad · <a class="js-mail" href="mailto:marcusla63@gmail.com">marcusla63@gmail.com</a></span><span>Laget i Harstad</span><a href="#top">Til toppen ↑</a></div>
 </footer>
 
 <script>
@@ -535,14 +563,23 @@ document.querySelectorAll('.chip img').forEach(i => {
 /* Kalkulator */
 const min = document.getElementById('min'), ppl = document.getElementById('ppl');
 const nb = n => n.toLocaleString('nb-NO');
+const cost = document.getElementById('cost');
 function regn() {
   const timer = Math.round(min.value * ppl.value * 230 / 60);
+  const cut = Number((document.querySelector('input[name="cut"]:checked') || { value: 50 }).value);
+  const saved = Math.round(timer * cut / 100);
+  const kr = Math.round(saved * Math.max(0, Number(cost.value) || 0) / 100) * 100;
   document.getElementById('minOut').textContent = min.value + ' min';
   document.getElementById('pplOut').textContent = ppl.value;
   document.getElementById('hours').textContent = nb(timer);
-  document.getElementById('days').textContent = nb(Math.round(timer / 7.5));
+  document.getElementById('saved').textContent = nb(saved);
+  document.getElementById('kr').textContent = nb(kr);
+  document.getElementById('keepBar').style.width = (100 - cut) + '%';
+  document.getElementById('saveBar').style.width = cut + '%';
 }
-min.addEventListener('input', regn); ppl.addEventListener('input', regn); regn();
+[min, ppl, cost].forEach(el => el.addEventListener('input', regn));
+document.querySelectorAll('input[name="cut"]').forEach(r => r.addEventListener('change', regn));
+regn();
 
 /* Kontaktskjema: åpner e-post med utfylt tekst */
 document.getElementById('form').addEventListener('submit', e => {
