@@ -260,8 +260,8 @@ details p{padding:0 28px 26px;color:var(--soft);max-width:56ch}
 .tbCta{min-height:44px;padding:0 20px}
 section[id]{scroll-margin-top:84px}
 /* ============ Fra rot til rutine ============ */
-.flow{position:relative;height:183vh}
-.flowStick{position:sticky;top:0;height:100svh;overflow:hidden}
+.flow{position:relative}
+.flowStick{position:relative;height:100svh;min-height:560px;overflow:hidden}
 .flowHead{position:absolute;left:var(--margin);right:var(--margin);top:clamp(92px,13vh,128px);z-index:2;pointer-events:none}
 .flowHead h2{font-size:var(--s-head);font-weight:300;letter-spacing:-.04em;line-height:1.05}
 .flowHead .to{color:var(--gold);opacity:0;display:inline-block}
@@ -272,7 +272,7 @@ section[id]{scroll-margin-top:84px}
 .ft{position:absolute;left:0;top:0;border-radius:22%;will-change:transform}
 .ft.logo{background:#fff;display:grid;place-items:center}
 .ft.logo svg{width:60%;height:60%}
-@media (prefers-reduced-motion:reduce){.flow{height:auto}.flowStick{position:relative}}
+
 /* ============ Erfaring ============ */
 .proofHead{grid-column:1 / -1;font-size:var(--s-state);font-weight:400;letter-spacing:-.025em;margin-top:56px;margin-bottom:12px}
 .proofGrid{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
@@ -288,7 +288,6 @@ section[id]{scroll-margin-top:84px}
 @media (max-width:900px){
   .tbLinks{display:none}
   .topbar{padding-left:18px}
-  .flow{height:157vh}
   .statement .stText p{font-size:var(--s-lead)}
   .proofHead{margin-top:40px}
   .proofGrid{grid-template-columns:1fr}
@@ -369,6 +368,7 @@ section[id]{scroll-margin-top:84px}
 .kPicked{font-size:var(--s-small);color:#3a4250;max-width:40ch}
 .inl{text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px}
 .inl:hover{color:var(--gold)}
+.heroMid .inl{text-decoration:none}
 @media (max-width:900px){
   .kurs{margin-top:64px;padding:56px var(--margin);grid-template-columns:1fr;gap:32px}
   .kHead{position:static}
@@ -636,13 +636,26 @@ document.querySelectorAll('.heroPic img').forEach(i => i.addEventListener('error
     const w = COLS * t + (COLS - 1) * g, x0 = (vw - w) / 2, bh = ROWS * t + (ROWS - 1) * g;
     L = { vw, vh, t, g, x0, top: top + Math.max(0, (vh - top - 40 - bh) * .4), scatterTop: top };
     tiles.forEach(el => { el.style.width = el.style.height = t + 'px'; });
-    update();
+    update(cur);
   }
   const ease = k => k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
   const clamp = v => Math.min(1, Math.max(0, v));
-  function update() {
+  /* Fremdriften følger rullingen i takt: 0 når seksjonen kommer inn nederst, 1 når den fyller skjermen.
+     Siden låses ikke fast; bitene glir mykt etter fingeren eller musehjulet. */
+  const target = () => {
+    if (still) return 1;
     const r = sec.getBoundingClientRect();
-    const p = still ? 1 : clamp(-r.top / Math.max(1, r.height - L.vh));
+    return clamp((L.vh - r.top) / (L.vh * .9));
+  };
+  let cur = 0, raf = 0;
+  function tick() {
+    const t = target(), d = t - cur;
+    cur = Math.abs(d) < .0005 ? t : cur + d * .14;
+    update(cur);
+    raf = cur === t ? 0 : requestAnimationFrame(tick);
+  }
+  const kick = () => { if (!raf) raf = requestAnimationFrame(tick); };
+  function update(p) {
     tiles.forEach((el, i) => {
       const row = Math.floor(i / COLS), col = i % COLS, c = chaos[i];
       const tx = L.x0 + col * (L.t + L.g), ty = L.top + row * (L.t + L.g);
@@ -655,11 +668,10 @@ document.querySelectorAll('.heroPic img').forEach(i => i.addEventListener('error
     to.style.opacity = end; to.style.transform = 'translateY(' + ((1 - end) * 12).toFixed(1) + 'px)';
     capA.style.opacity = 1 - end; capB.style.opacity = end;
   }
-  let raf = 0;
-  addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; update(); }); }, { passive: true });
+  addEventListener('scroll', kick, { passive: true });
   addEventListener('resize', layout);
   if (document.fonts) document.fonts.ready.then(layout);
-  layout();
+  layout(); cur = target(); update(cur);
 })();
 
 /* Toppmenyen glir inn når toppen er passert */
