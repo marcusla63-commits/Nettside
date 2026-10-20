@@ -640,12 +640,12 @@ document.querySelectorAll('.heroPic img').forEach(i => i.addEventListener('error
   }
   const ease = k => k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
   const clamp = v => Math.min(1, Math.max(0, v));
-  /* Fremdriften følger rullingen i takt: 0 når seksjonen kommer inn nederst, 1 når den fyller skjermen.
+  /* Fremdriften følger rullingen i takt: 0 når seksjonen har kommet 40 % inn på skjermen, 1 når den fyller skjermen.
      Siden låses ikke fast; bitene glir mykt etter fingeren eller musehjulet. */
   const target = () => {
     if (still) return 1;
     const r = sec.getBoundingClientRect();
-    return clamp((L.vh - r.top) / (L.vh * .9));
+    return clamp((L.vh * .6 - r.top) / (L.vh * .6));
   };
   let cur = 0, raf = 0;
   function tick() {
