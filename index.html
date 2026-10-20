@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Larsen Digital – fra rot til rutine</title>
-<meta name="description" content="Larsen Digital: Marcus Larsen hjelper små bedrifter i Harstad med enklere rutiner, ryddigere regneark, bedre bruk av verktøyene de har, små kurs og KI der det passer. Første prat er gratis.">
+<meta name="description" content="Larsen Digital: Marcus Larsen hjelper bedrifter i Harstad med enklere rutiner og ryddigere regneark, og holder kurs i Word, Excel, KI og annet digitalt for alle som vil lære. Gratis.">
 <meta name="theme-color" content="#0c0d10">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230c0d10'/%3E%3Crect x='9' y='9' width='14' height='14' rx='3.5' fill='%23e8c35a'/%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="nb_NO">
 <meta property="og:site_name" content="Larsen Digital">
 <meta property="og:title" content="Larsen Digital – fra rot til rutine">
-<meta property="og:description" content="Gratis hjelp med enklere rutiner, ryddigere regneark og bedre bruk av verktøyene dere allerede har.">
+<meta property="og:description" content="Gratis hjelp med enklere rutiner og ryddigere regneark, og kurs i Word, Excel, KI og annet digitalt for alle.">
 <meta property="og:url" content="https://marcusla63-commits.github.io/Nettside/">
 <meta property="og:image" content="https://marcusla63-commits.github.io/Nettside/deling.jpg">
 <meta property="og:image:width" content="1200">
@@ -332,25 +332,60 @@ section[id]{scroll-margin-top:84px}
   .cc{grid-template-columns:1fr;padding:28px 20px;gap:36px}
 }
 @media (max-width:520px){.facts{grid-template-columns:1fr}}
+/* ============ Kurs ============ */
+.kurs{margin-top:120px;padding:104px var(--margin);background:var(--sky);color:var(--page);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,80px);align-items:start}
+.kurs :focus-visible{outline-color:var(--page)}
+.kHead{position:sticky;top:110px}
+.kHead h2{font-size:var(--s-head);font-weight:300;letter-spacing:-.04em;line-height:1.05;max-width:12ch}
+.kLead{margin-top:20px;font-size:var(--s-lead);line-height:1.35;max-width:30ch}
+.kPromise{margin-top:32px;display:flex;flex-direction:column;gap:10px}
+.kPromise li{background:#cdd5dc;border-radius:var(--radius);padding:14px 18px;max-width:42ch}
+.kHint{font-size:var(--s-small);margin-bottom:14px;color:#3a4250}
+.topics{display:flex;flex-direction:column;gap:8px}
+.topic{width:100%;display:grid;grid-template-columns:1fr auto;column-gap:20px;align-items:center;text-align:left;border:0;cursor:pointer;background:#f1f4f6;color:var(--page);border-radius:var(--radius);padding:18px 22px;min-height:64px;font-family:var(--font);transition:background-color .18s ease,color .18s ease,transform .18s ease}
+.topic:hover{transform:translateX(4px);background:#fff}
+.topic:active{transform:none}
+.topic .tt{font-size:var(--s-lead);letter-spacing:-.02em;line-height:1.2}
+.topic .td{grid-row:2;font-size:var(--s-small);color:#3a4250;margin-top:4px}
+.topic .tm{grid-row:1 / 3;grid-column:2;width:30px;height:30px;border-radius:50%;background:var(--page);position:relative;transition:background-color .18s ease}
+.topic .tm::before,.topic .tm::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;margin:-1px 0 0 -6px;background:var(--sky);transition:transform .2s ease}
+.topic .tm::after{transform:rotate(90deg)}
+.topic[aria-pressed="true"]{background:var(--page);color:var(--ink)}
+.topic[aria-pressed="true"] .td{color:var(--soft)}
+.topic[aria-pressed="true"] .tm{background:var(--gold)}
+.topic[aria-pressed="true"] .tm::before{transform:translate(-2px,2px) rotate(45deg) scaleX(.5);background:var(--on-gold)}
+.topic[aria-pressed="true"] .tm::after{transform:translate(3px,0) rotate(-45deg);background:var(--on-gold)}
+.topic.own{background:#cdd5dc}
+.kGo{display:flex;align-items:center;gap:16px 24px;flex-wrap:wrap;margin-top:24px}
+.kGo .pill{background:var(--page);color:var(--ink)}
+.kGo .pill:hover{background:var(--gold);color:var(--on-gold)}
+.kPicked{font-size:var(--s-small);color:#3a4250;max-width:40ch}
+.inl{text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px}
+.inl:hover{color:var(--gold)}
+@media (max-width:900px){
+  .kurs{margin-top:64px;padding:56px var(--margin);grid-template-columns:1fr;gap:32px}
+  .kHead{position:static}
+  .topic{padding:16px 18px}
+}
 </style>
 </head>
 <body>
 
 <nav class="topbar" id="topbar" aria-label="Hovedmeny">
   <a class="tbBrand" href="#top">Larsen Digital</a>
-  <div class="tbLinks"><a href="#tjenester">Tjenester</a><a href="#om">Om meg</a><a href="#spm">Spørsmål</a></div>
+  <div class="tbLinks"><a href="#tjenester">Tjenester</a><a href="#kurs">Kurs</a><a href="#om">Om meg</a><a href="#spm">Spørsmål</a></div>
   <a class="pill gold tbCta" href="#kontakt">Ta kontakt</a>
 </nav>
 <header class="hero" id="top">
   <div class="heroText">
         <div class="heroMid">
       <h1 id="h1">Fra rot<br> <span class="soft">til rutine.</span></h1>
-      <p>Jeg heter Marcus og hjelper små bedrifter i Harstad med ryddigere rutiner, smartere regneark og bedre bruk av verktøyene dere allerede har.</p>
+      <p>Jeg heter Marcus. Jeg hjelper bedrifter i Harstad med ryddigere rutiner og regneark, og <a class="inl" href="#kurs">holder kurs</a> i Word, Excel, KI og annet digitalt for alle som vil lære.</p>
       <a class="pill" href="#tjenester">Se hva jeg kan hjelpe med</a>
     </div>
     <div class="heroFoot">
       <a class="pill gold" href="#kontakt">Ta kontakt <svg class="arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12L12 4M6 4h6v6" stroke="currentColor" stroke-width="1.8"/></svg></a>
-      <p class="status"><span class="dot" aria-hidden="true"></span>Tar imot nye bedrifter i Harstad</p>
+      <p class="status"><span class="dot" aria-hidden="true"></span>Tar imot bedrifter, foreninger og privatpersoner</p>
     </div>
   </div>
   <figure class="heroPic">
@@ -411,10 +446,30 @@ section[id]{scroll-margin-top:84px}
       <span class="dcShade" aria-hidden="true"></span>
     </article>
     <article class="dc">
-      <div class="dcText"><p class="name">Små kurs og KI</p><h3>Korte kurs, og KI der det faktisk hjelper.</h3><p class="desc">Korte, praktiske kurs for de ansatte, og hjelp til å bruke KI trygt i oppgaver der det sparer tid.</p><ul><li>Ett tema om gangen</li><li>Hos dere</li><li>På Teams</li><li>Trygg bruk</li></ul><a class="pill" href="#kontakt">Spør om dette</a></div>
+      <div class="dcText"><p class="name">KI i hverdagen</p><h3>KI der det faktisk sparer tid.</h3><p class="desc">Vi finner to eller tre konkrete oppgaver der KI hjelper, og går gjennom hva som er trygt å legge inn. Vil dere heller lære det på egen hånd, finnes det også <a class="inl" href="#kurs">som kurs</a>.</p><ul><li>Konkrete oppgaver</li><li>Trygg bruk</li><li>Hos dere eller på Teams</li></ul><a class="pill" href="#kontakt">Spør om dette</a></div>
       <div class="dcPic"><svg class="art" viewBox="0 0 700 560" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Kunst: et nettverk av punkter og streker, der en gul sti lyser opp veien fra venstre til høyre."><rect width="700" height="560" fill="#141b2c"/><line x1="385" y1="339" x2="464" y2="364" stroke="#3a4d78" stroke-width="1.6"/><line x1="321" y1="305" x2="255" y2="327" stroke="#3a4d78" stroke-width="1.6"/><line x1="184" y1="60" x2="156" y2="58" stroke="#3a4d78" stroke-width="1.6"/><line x1="142" y1="371" x2="136" y2="432" stroke="#3a4d78" stroke-width="1.6"/><line x1="658" y1="395" x2="612" y2="466" stroke="#3a4d78" stroke-width="1.6"/><line x1="136" y1="432" x2="81" y2="431" stroke="#3a4d78" stroke-width="1.6"/><line x1="403" y1="73" x2="524" y2="140" stroke="#3a4d78" stroke-width="1.6"/><line x1="184" y1="60" x2="230" y2="90" stroke="#3a4d78" stroke-width="1.6"/><line x1="532" y1="151" x2="577" y2="153" stroke="#3a4d78" stroke-width="1.6"/><line x1="583" y1="336" x2="636" y2="323" stroke="#3a4d78" stroke-width="1.6"/><line x1="434" y1="270" x2="464" y2="364" stroke="#3a4d78" stroke-width="1.6"/><line x1="136" y1="432" x2="117" y2="485" stroke="#3a4d78" stroke-width="1.6"/><line x1="658" y1="395" x2="583" y2="336" stroke="#3a4d78" stroke-width="1.6"/><line x1="42" y1="218" x2="57" y2="85" stroke="#3a4d78" stroke-width="1.6"/><line x1="630" y1="217" x2="577" y2="153" stroke="#3a4d78" stroke-width="1.6"/><line x1="434" y1="270" x2="385" y2="339" stroke="#3a4d78" stroke-width="1.6"/><line x1="174" y1="420" x2="178" y2="332" stroke="#3a4d78" stroke-width="1.6"/><line x1="156" y1="58" x2="57" y2="85" stroke="#3a4d78" stroke-width="1.6"/><line x1="657" y1="226" x2="636" y2="323" stroke="#3a4d78" stroke-width="1.6"/><line x1="658" y1="395" x2="641" y2="469" stroke="#3a4d78" stroke-width="1.6"/><line x1="583" y1="336" x2="508" y2="406" stroke="#3a4d78" stroke-width="1.6"/><line x1="321" y1="305" x2="253" y2="273" stroke="#3a4d78" stroke-width="1.6"/><line x1="381" y1="399" x2="464" y2="364" stroke="#3a4d78" stroke-width="1.6"/><line x1="321" y1="305" x2="385" y2="339" stroke="#3a4d78" stroke-width="1.6"/><line x1="541" y1="286" x2="583" y2="336" stroke="#3a4d78" stroke-width="1.6"/><line x1="508" y1="406" x2="400" y2="390" stroke="#3a4d78" stroke-width="1.6"/><line x1="142" y1="371" x2="174" y2="420" stroke="#3a4d78" stroke-width="1.6"/><line x1="353" y1="153" x2="294" y2="215" stroke="#3a4d78" stroke-width="1.6"/><line x1="641" y1="469" x2="597" y2="500" stroke="#3a4d78" stroke-width="1.6"/><line x1="136" y1="432" x2="256" y2="485" stroke="#3a4d78" stroke-width="1.6"/><line x1="184" y1="60" x2="152" y2="122" stroke="#3a4d78" stroke-width="1.6"/><line x1="57" y1="85" x2="152" y2="122" stroke="#3a4d78" stroke-width="1.6"/><line x1="381" y1="399" x2="385" y2="339" stroke="#3a4d78" stroke-width="1.6"/><line x1="381" y1="399" x2="292" y2="515" stroke="#3a4d78" stroke-width="1.6"/><line x1="400" y1="390" x2="381" y2="399" stroke="#3a4d78" stroke-width="1.6"/><line x1="400" y1="390" x2="464" y2="364" stroke="#3a4d78" stroke-width="1.6"/><line x1="577" y1="153" x2="524" y2="140" stroke="#3a4d78" stroke-width="1.6"/><line x1="320" y1="225" x2="348" y2="276" stroke="#3a4d78" stroke-width="1.6"/><line x1="577" y1="153" x2="657" y2="226" stroke="#3a4d78" stroke-width="1.6"/><line x1="256" y1="485" x2="292" y2="515" stroke="#3a4d78" stroke-width="1.6"/><line x1="434" y1="270" x2="348" y2="276" stroke="#3a4d78" stroke-width="1.6"/><line x1="142" y1="371" x2="178" y2="332" stroke="#3a4d78" stroke-width="1.6"/><line x1="42" y1="218" x2="61" y2="198" stroke="#3a4d78" stroke-width="1.6"/><line x1="612" y1="466" x2="597" y2="500" stroke="#3a4d78" stroke-width="1.6"/><line x1="156" y1="58" x2="230" y2="90" stroke="#3a4d78" stroke-width="1.6"/><line x1="400" y1="390" x2="385" y2="339" stroke="#3a4d78" stroke-width="1.6"/><line x1="174" y1="420" x2="117" y2="485" stroke="#3a4d78" stroke-width="1.6"/><line x1="353" y1="153" x2="403" y2="73" stroke="#3a4d78" stroke-width="1.6"/><line x1="532" y1="151" x2="522" y2="220" stroke="#3a4d78" stroke-width="1.6"/><line x1="294" y1="215" x2="320" y2="225" stroke="#3a4d78" stroke-width="1.6"/><line x1="253" y1="273" x2="294" y2="215" stroke="#3a4d78" stroke-width="1.6"/><line x1="524" y1="140" x2="553" y2="137" stroke="#3a4d78" stroke-width="1.6"/><line x1="532" y1="151" x2="553" y2="137" stroke="#3a4d78" stroke-width="1.6"/><line x1="253" y1="273" x2="255" y2="327" stroke="#3a4d78" stroke-width="1.6"/><line x1="142" y1="371" x2="81" y2="431" stroke="#3a4d78" stroke-width="1.6"/><line x1="174" y1="420" x2="256" y2="485" stroke="#3a4d78" stroke-width="1.6"/><line x1="116" y1="269" x2="178" y2="332" stroke="#3a4d78" stroke-width="1.6"/><line x1="612" y1="466" x2="485" y2="517" stroke="#3a4d78" stroke-width="1.6"/><line x1="641" y1="469" x2="612" y2="466" stroke="#3a4d78" stroke-width="1.6"/><line x1="117" y1="485" x2="81" y2="431" stroke="#3a4d78" stroke-width="1.6"/><line x1="156" y1="58" x2="152" y2="122" stroke="#3a4d78" stroke-width="1.6"/><line x1="353" y1="153" x2="320" y2="225" stroke="#3a4d78" stroke-width="1.6"/><line x1="178" y1="332" x2="255" y2="327" stroke="#3a4d78" stroke-width="1.6"/><line x1="294" y1="215" x2="348" y2="276" stroke="#3a4d78" stroke-width="1.6"/><line x1="61" y1="198" x2="116" y2="269" stroke="#3a4d78" stroke-width="1.6"/><line x1="541" y1="286" x2="522" y2="220" stroke="#3a4d78" stroke-width="1.6"/><line x1="403" y1="73" x2="348" y2="96" stroke="#3a4d78" stroke-width="1.6"/><line x1="658" y1="395" x2="636" y2="323" stroke="#3a4d78" stroke-width="1.6"/><line x1="532" y1="151" x2="524" y2="140" stroke="#3a4d78" stroke-width="1.6"/><line x1="321" y1="305" x2="348" y2="276" stroke="#3a4d78" stroke-width="1.6"/><line x1="353" y1="153" x2="348" y2="96" stroke="#3a4d78" stroke-width="1.6"/><line x1="630" y1="217" x2="636" y2="323" stroke="#3a4d78" stroke-width="1.6"/><line x1="524" y1="140" x2="522" y2="220" stroke="#3a4d78" stroke-width="1.6"/><line x1="174" y1="420" x2="136" y2="432" stroke="#3a4d78" stroke-width="1.6"/><line x1="630" y1="217" x2="657" y2="226" stroke="#3a4d78" stroke-width="1.6"/><line x1="174" y1="420" x2="292" y2="515" stroke="#3a4d78" stroke-width="1.6"/><line x1="508" y1="406" x2="485" y2="517" stroke="#3a4d78" stroke-width="1.6"/><line x1="42" y1="218" x2="116" y2="269" stroke="#3a4d78" stroke-width="1.6"/><line x1="485" y1="517" x2="597" y2="500" stroke="#3a4d78" stroke-width="1.6"/><line x1="152" y1="122" x2="230" y2="90" stroke="#3a4d78" stroke-width="1.6"/><line x1="348" y1="96" x2="230" y2="90" stroke="#3a4d78" stroke-width="1.6"/><line x1="541" y1="286" x2="636" y2="323" stroke="#3a4d78" stroke-width="1.6"/><line x1="348" y1="276" x2="385" y2="339" stroke="#3a4d78" stroke-width="1.6"/><line x1="577" y1="153" x2="553" y2="137" stroke="#3a4d78" stroke-width="1.6"/><line x1="508" y1="406" x2="464" y2="364" stroke="#3a4d78" stroke-width="1.6"/><line x1="61" y1="198" x2="57" y2="85" stroke="#3a4d78" stroke-width="1.6"/><path class="draw" pathLength="1" d="M42 218 L116 269 L178 332 L255 327 L321 305 L385 339 L464 364 L508 406 L583 336 L658 395" stroke="#e8c35a" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="142" cy="371" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="434" cy="270" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="174" cy="420" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="541" cy="286" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="353" cy="153" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="42" cy="218" r="9" fill="#e8c35a" fill-opacity="1"/><circle cx="403" cy="73" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="532" cy="151" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="184" cy="60" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="658" cy="395" r="9" fill="#e8c35a" fill-opacity="1"/><circle cx="583" cy="336" r="9" fill="#e8c35a" fill-opacity="1"/><circle cx="61" cy="198" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="348" cy="96" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="630" cy="217" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="136" cy="432" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="117" cy="485" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="321" cy="305" r="9" fill="#e8c35a" fill-opacity="1"/><circle cx="253" cy="273" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="156" cy="58" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="577" cy="153" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="524" cy="140" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="641" cy="469" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="508" cy="406" r="9" fill="#e8c35a" fill-opacity="1"/><circle cx="400" cy="390" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="116" cy="269" r="9" fill="#e8c35a" fill-opacity="1"/><circle cx="553" cy="137" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="612" cy="466" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="294" cy="215" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="320" cy="225" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="657" cy="226" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="57" cy="85" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="485" cy="517" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="348" cy="276" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="381" cy="399" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="178" cy="332" r="9" fill="#e8c35a" fill-opacity="1"/><circle cx="385" cy="339" r="9" fill="#e8c35a" fill-opacity="1"/><circle cx="152" cy="122" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="256" cy="485" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="255" cy="327" r="9" fill="#e8c35a" fill-opacity="1"/><circle cx="230" cy="90" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="81" cy="431" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="522" cy="220" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="464" cy="364" r="9" fill="#e8c35a" fill-opacity="1"/><circle cx="597" cy="500" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="292" cy="515" r="5" fill="#dfe5ea" fill-opacity="0.8"/><circle cx="636" cy="323" r="5" fill="#dfe5ea" fill-opacity="0.8"/></svg></div>
       <span class="dcShade" aria-hidden="true"></span>
     </article>
+  </div>
+</section>
+
+<section class="kurs" id="kurs" aria-label="Kurs">
+  <div class="kHead reveal">
+    <h2>Kurs for alle som vil lære</h2>
+    <p class="kLead">Korte, praktiske kurs i det du lurer på. For privatpersoner, lag, foreninger og bedrifter.</p>
+    <ul class="kPromise">
+      <li>Du bestemmer tema, lengde og sted, for én person eller hele gjengen.</li>
+      <li>Ingen spørsmål er for enkle. Vi starter der du er.</li>
+      <li>Kurset du bestiller er gratis. Du får aldri en regning for det i etterkant.</li>
+    </ul>
+  </div>
+  <div class="kPick reveal">
+    <p class="kHint" id="kHint">Trykk på det du vil lære. Du kan velge flere.</p>
+    <ul class="topics"><li><button type="button" class="topic" aria-pressed="false" data-t="Word"><span class="tt">Word uten frustrasjon</span><span class="td">Maler, formatering og lange dokumenter</span><span class="tm" aria-hidden="true"></span></button></li><li><button type="button" class="topic" aria-pressed="false" data-t="Excel"><span class="tt">Excel for hverdagen</span><span class="td">Tabeller, summering og enkle formler</span><span class="tm" aria-hidden="true"></span></button></li><li><button type="button" class="topic" aria-pressed="false" data-t="E-post, Outlook og Teams"><span class="tt">E-post, Outlook og Teams</span><span class="td">Få kontroll på innboksen og møtene</span><span class="tm" aria-hidden="true"></span></button></li><li><button type="button" class="topic" aria-pressed="false" data-t="Mobil og nettbrett"><span class="tt">Mobil og nettbrett</span><span class="td">Innstillinger, apper og det som irriterer</span><span class="tm" aria-hidden="true"></span></button></li><li><button type="button" class="topic" aria-pressed="false" data-t="Trygg på nett"><span class="tt">Trygg på nett</span><span class="td">Passord, svindel og falske meldinger</span><span class="tm" aria-hidden="true"></span></button></li><li><button type="button" class="topic" aria-pressed="false" data-t="Bilder og lagring i skyen"><span class="tt">Bilder og lagring i skyen</span><span class="td">Ta vare på bildene og finn filene igjen</span><span class="tm" aria-hidden="true"></span></button></li><li><button type="button" class="topic" aria-pressed="false" data-t="BankID, Vipps og digitale tjenester"><span class="tt">BankID, Vipps og digitale tjenester</span><span class="td">Logg inn, betal og finn fram hos det offentlige</span><span class="tm" aria-hidden="true"></span></button></li><li><button type="button" class="topic" aria-pressed="false" data-t="KI"><span class="tt">Kom i gang med KI</span><span class="td">Hva det kan brukes til, og hva du bør passe på</span><span class="tm" aria-hidden="true"></span></button></li><li><button type="button" class="topic own" data-own="1"><span class="tt">Et tema du velger selv</span><span class="td">Fortell hva du vil lære, så lager jeg kurset</span><span class="tm" aria-hidden="true"></span></button></li></ul>
+    <div class="kGo">
+      <a class="pill" href="#kontakt" id="kBtn">Foreslå et kurs</a>
+      <p class="kPicked" id="kPicked" aria-live="polite"></p>
+    </div>
   </div>
 </section>
 
@@ -495,9 +550,9 @@ section[id]{scroll-margin-top:84px}
 <section class="faq" id="spm" aria-label="Spørsmål og svar">
   <h2 class="reveal">Det folk lurer på</h2>
   <div class="qs">
-    <details class="reveal"><summary>Hvorfor er det gratis?</summary><p>Fordi jeg vil bygge erfaring og hjelpe bedrifter her i Harstad. Jeg har fast jobb ved siden av, og gjør dette fordi jeg liker å løse slike problemer. Det koster ingenting å ta en prat, få et forslag eller få hjelp til å komme i gang.</p></details>
+    <details class="reveal"><summary>Hvorfor er det gratis?</summary><p>Fordi jeg vil bygge erfaring og hjelpe folk og bedrifter her i Harstad. Jeg har fast jobb ved siden av, og gjør dette fordi jeg liker det. Praten, forslaget, kurset og oppfølgingen du avtaler med meg nå, er gratis. Du får aldri en regning for det i etterkant.</p></details>
     <details class="reveal"><summary>Må vi være flinke med data?</summary><p>Nei. Vi starter der dere er. Mange av de beste forbedringene handler ikke om ny teknologi, men om å rydde i rutinene dere allerede har.</p></details>
-    <details class="reveal"><summary>Hva slags bedrifter hjelper du?</summary><p>Små og mellomstore bedrifter i Harstad og omegn: butikker, håndverkere, kontorer, lag og foreninger.</p></details>
+    <details class="reveal"><summary>Hvem hjelper du?</summary><p>Små og mellomstore bedrifter i Harstad og omegn: butikker, håndverkere, kontorer, lag og foreninger. Kursene er for alle, også privatpersoner og eldre som vil bli tryggere på data.</p></details>
     <details class="reveal"><summary>Kommer du til oss, eller tar vi det på nett?</summary><p>Begge deler går fint. Det meste skjer ansikt til ansikt i Harstad og omegn, men vi kan også ta praten på Teams.</p></details>
     <details class="reveal"><summary>Hva skjer med informasjonen vår?</summary><p>Det dere forteller meg, blir mellom oss. Jeg deler ingenting videre, og vi går sammen gjennom hva som er trygt å legge inn i nye verktøy.</p></details>
   </div>
@@ -506,14 +561,14 @@ section[id]{scroll-margin-top:84px}
 <section class="contact" id="kontakt" aria-label="Kontakt">
   <div class="card cc reveal">
     <div>
-      <h2>Har dere en tidstyv? La oss ta en prat.</h2>
-      <p class="say">Fortell kort hva som tar for mye tid, så tar jeg kontakt og avtaler en første prat. Det er gratis og uforpliktende.</p>
+      <h2>La oss ta en prat.</h2>
+      <p class="say">Fortell kort hva som tar for mye tid, eller hva du vil lære, så tar jeg kontakt. Det er gratis og uforpliktende.</p>
       <a class="mail js-mail" href="mailto:marcusla63@gmail.com">marcusla63@gmail.com</a>
     </div>
     <form class="form" id="form" aria-label="Kontaktskjema">
-      <label for="f-navn">Navn og bedrift<input id="f-navn" name="navn" type="text" autocomplete="name" required></label>
+      <label for="f-navn">Navn (og bedrift eller forening, om du har)<input id="f-navn" name="navn" type="text" autocomplete="name" required></label>
       <label for="f-kontakt">E-post eller telefon<input id="f-kontakt" name="kontakt" type="text" required></label>
-      <label for="f-behov">Hva tar for mye tid hos dere?<textarea id="f-behov" name="behov"></textarea></label>
+      <label for="f-behov">Hva tar for mye tid, eller hva vil du lære?<textarea id="f-behov" name="behov"></textarea></label>
       <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="pill dark" type="submit" id="sendBtn">Send forespørsel</button>
       <p class="fine" id="formMsg" role="status">Meldingen går rett til meg. Jeg svarer så fort jeg kan.</p>
@@ -693,7 +748,7 @@ regn();
     try {
       const r = await fetch('https://formsubmit.co/ajax/' + EPOST, {
         method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ _subject: 'Ny forespørsel fra nettsiden – ' + f.get('navn'), _template: 'table', 'Navn og bedrift': f.get('navn'), 'Kontakt': f.get('kontakt'), 'Hva tar for mye tid': f.get('behov') || '' })
+        body: JSON.stringify({ _subject: 'Ny forespørsel fra nettsiden – ' + f.get('navn'), _template: 'table', 'Navn': f.get('navn'), 'Kontakt': f.get('kontakt'), 'Hva gjelder det': f.get('behov') || '' })
       });
       if (!r.ok) throw new Error(r.status);
       form.reset(); btn.textContent = 'Sendt';
@@ -703,6 +758,25 @@ regn();
       msg.innerHTML = 'Noe gikk galt. Send gjerne en e-post til <a href="mailto:' + EPOST + '">' + EPOST + '</a> i stedet.';
     }
   });
+})();
+
+/* Kurs: velg temaer, så fylles kontaktskjemaet ut */
+(function () {
+  const btns = [...document.querySelectorAll('.topic[data-t]')], own = document.querySelector('.topic.own');
+  const picked = document.getElementById('kPicked'), go = document.getElementById('kBtn'), box = document.getElementById('f-behov');
+  const chosen = () => btns.filter(b => b.getAttribute('aria-pressed') === 'true').map(b => b.dataset.t);
+  const show = () => {
+    const c = chosen();
+    picked.textContent = c.length ? 'Valgt: ' + c.join(', ') : '';
+    go.textContent = c.length ? 'Foreslå ' + (c.length === 1 ? 'dette kurset' : 'disse kursene') : 'Foreslå et kurs';
+  };
+  btns.forEach(b => b.addEventListener('click', () => { b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'); show(); }));
+  const fill = text => { box.value = text; document.getElementById('kontakt').scrollIntoView({ behavior: still ? 'auto' : 'smooth' }); setTimeout(() => { box.focus({ preventScroll: true }); box.setSelectionRange(box.value.length, box.value.length); }, still ? 0 : 600); };
+  go.addEventListener('click', e => {
+    const c = chosen(); e.preventDefault();
+    fill(c.length ? 'Jeg vil gjerne ha kurs i: ' + c.join(', ') + '.\nPasser best for: ' : 'Jeg vil gjerne ha kurs i: ');
+  });
+  own.addEventListener('click', () => fill('Jeg vil gjerne lære om: '));
 })();
 
 /* Seksjonene glir inn når de kommer til syne */
