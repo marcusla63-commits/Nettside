@@ -187,9 +187,9 @@ ul{padding:0;list-style:none}
 
 /* ============ Om meg ============ */
 .about{padding:120px var(--margin) 0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;align-items:stretch}
-.aboutPic{grid-column:1 / 6;border-radius:var(--radius);overflow:hidden;background:var(--navy);aspect-ratio:4 / 5}
-.aboutPic img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
-.aboutBody{grid-column:6 / 13;display:flex;flex-direction:column;justify-content:center;gap:24px;background:var(--card);border-radius:var(--radius);padding:clamp(28px,3.4vw,48px)}
+.aboutPic{grid-column:1 / 7;align-self:center;border-radius:var(--radius);overflow:hidden;background:var(--navy);aspect-ratio:4 / 3}
+.aboutPic img{width:100%;height:100%;object-fit:cover;object-position:64% 50%}
+.aboutBody{grid-column:7 / 13;display:flex;flex-direction:column;justify-content:center;gap:24px;background:var(--card);border-radius:var(--radius);padding:clamp(28px,3.4vw,48px)}
 .about h2{font-size:var(--s-head);font-weight:300;letter-spacing:-.04em}
 .about .say{font-size:var(--s-lead);line-height:1.35;max-width:44ch}
 .facts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
@@ -327,7 +327,8 @@ section[id]{scroll-margin-top:84px}
   .calcCard > div:first-child{grid-row:1}
   .about{padding-top:64px;grid-template-columns:1fr}
   .aboutPic,.aboutBody,.proofHead,.proofGrid{grid-column:1 / -1}
-  .aboutPic{aspect-ratio:1 / 1}
+  .aboutPic{aspect-ratio:4 / 3}
+  .aboutPic img{object-position:60% 50%}
   .statement{grid-template-columns:1fr;padding:64px var(--margin)}
   .statement .bB{min-height:0}
   .faq{padding-top:64px;grid-template-columns:1fr}
@@ -516,7 +517,7 @@ section[id]{scroll-margin-top:84px}
 </section>
 
 <section class="about" id="om" aria-label="Om meg">
-  <figure class="aboutPic reveal"><img src="portrett.jpg" width="1200" height="1500" alt="Portrett av Marcus Larsen som smiler, i lys grå skjorte mot en uskarp blå bakgrunn." loading="lazy"></figure>
+  <figure class="aboutPic reveal"><img src="portrett.jpg" width="1600" height="1200" alt="Portrett av Marcus Larsen som smiler, i lys grå skjorte mot en uskarp blå bakgrunn." loading="lazy"></figure>
   <div class="aboutBody reveal">
     <h2>Om meg</h2>
     <p class="say">Teknologi har alltid vært en stor del av livet mitt. Jeg tester gjerne det nyeste først, og er ofte den familie og venner ringer når noe ikke virker. Nå vil jeg bruke det til å hjelpe folk og bedrifter her i Harstad.</p>
